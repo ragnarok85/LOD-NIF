@@ -1,0 +1,275 @@
+package lod.nif.main;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.compress.compressors.CompressorException;
+import org.apache.commons.compress.compressors.CompressorInputStream;
+import org.apache.commons.compress.compressors.CompressorStreamFactory;
+
+public class Main {
+	/*
+	 * args[0-2] - Context, page and links (in that order) lists.
+	 * args[3] - list of articles not found in Links
+	 * args[4-6] - Context, page and links (in that order) bz2 files.
+	 * args[6] - temporal output folder
+	 * args[7] - output temporal files
+	 * args[8] - output lod files
+	 * args[9] - output reports
+	 *  
+	 */
+	
+	String lastContextLine = "";
+	String lastPageLine = "";
+	String lastLinksLine = "";
+	String last = "";
+	int counter = 0;
+	Map<String,Report> mapArticleCounter = new HashMap<String,Report>();
+	
+	List<String> notInLinksList;
+	public static void main(String... args) throws CompressorException, IOException, NoSuchAlgorithmException{
+		Main main = new Main();
+		long initialTime = System.currentTimeMillis();
+		File pathContextList = new File(args[0]);
+		File pathPageList = new File(args[1]);
+		File pathLinksList = new File(args[2]);
+		File pathNotInLinksList = new File(args[3]);
+		String pathContextBZ2 = args[4];
+		String pathPageBZ2 = args[5];
+		String pathLinksBZ2 = args[6];
+		String outputFolder = args[7];
+		String outputLod = args[8];
+		String outputReports = args[9];
+		
+		BufferedReader brContext = main.getBufferedReaderForCompressedFile(pathContextBZ2);
+		BufferedReader brPage = main.getBufferedReaderForCompressedFile(pathPageBZ2);
+		BufferedReader brLinks = main.getBufferedReaderForCompressedFile(pathLinksBZ2);
+		
+		
+		List<String> contextList = main.readListFromFile(pathContextList);
+		List<String> pageList = main.readListFromFile(pathPageList);
+		List<String> linksList = main.readListFromFile(pathLinksList);
+		main.notInLinksList = main.readListFromFile(pathNotInLinksList);
+		String reportData = "";
+		String articlesData = "";
+		int numArticlesToProcess = 1000;
+		for(int i = numArticlesToProcess, j = 0 ; i < contextList.size(); ){
+			System.out.println("begin = " + j + "-- End = " + i);
+			j = i;
+			
+			main.createTempFiles(j, i, contextList, brContext, outputFolder, "context");
+			main.lastContextLine = main.last;
+			main.last= "";
+			main.createTempFiles(j, i, pageList, brPage, outputFolder, "page");
+			main.lastPageLine = main.last;
+			main.last= "";
+			main.createTempFiles(j , i, linksList, brLinks, outputFolder, "links");
+			main.lastLinksLine = main.last;
+			main.last= "";
+			
+			articlesData = main.printMapArticles();
+			
+			LOD lod = new LOD();
+			List<String> removeList = new ArrayList<String>();
+			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+				Report report = entry.getValue();
+				if(main.notInLinksList.contains(report.getArticle())){
+					if(report.getTimesProcessed() == 2){
+						report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+						removeList.add(entry.getKey());
+						reportData += report.toString() + "\n";
+					}
+				}else if(report.getTimesProcessed() == 3){
+					System.out.println("outputName = "+report.getOutputName());
+					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+					removeList.add(entry.getKey());
+					reportData += report.toString() + "\n";
+				}
+			}
+			for(String r : removeList){
+				File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
+				file.delete();
+				main.mapArticleCounter.remove(r);
+			}
+			System.out.println("Remaining files: ");
+			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+				System.out.println(entry.getKey());
+			}
+			
+			
+			if(i == contextList.size()-1)
+				break;
+			else
+				i += numArticlesToProcess;
+			if(i > contextList.size()){
+				i = contextList.size()-1;
+			}
+			
+		}
+//		main.createTempFiles(numArticlesToProcess, contextList, brContext, outputFolder, "context");
+//		main.lastContextLine = main.last;
+//		main.last= "";
+//		main.createTempFiles(numArticlesToProcess, pageList, brPage, outputFolder, "page");
+//		main.lastPageLine = main.last;
+//		main.last= "";
+//		main.createTempFiles(numArticlesToProcess, linksList, brLinks, outputFolder, "links");
+//		main.lastLinksLine = main.last;
+//		main.last= "";
+//		
+//		String articlesData = main.printMapArticles();
+//		
+//		LOD lod = new LOD();
+//		List<String> removeList = new ArrayList<String>();
+//		String reportData = "";
+//		for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+//			Report report = entry.getValue();
+//			if(main.notInLinksList.contains(report.getArticle())){
+//				if(report.getTimesProcessed() == 2){
+//					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+//					removeList.add(entry.getKey());
+//					reportData += report.toString() + "\n";
+//				}
+//			}else if(report.getTimesProcessed() == 3){
+//				System.out.println("outputName = "+report.getOutputName());
+//				report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+//				removeList.add(entry.getKey());
+//				reportData += report.toString() + "\n";
+//			}
+//		}
+//		for(String r : removeList){
+//			File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
+//			file.delete();
+//			main.mapArticleCounter.remove(r);
+//		}
+//		System.out.println("Remaining files: ");
+//		for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+//			System.out.println(entry.getKey());
+//		}
+		
+		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
+		main.writeReport(outputReports, "reports.tsv", reportData);
+		long endTime = System.currentTimeMillis() - initialTime;
+		String timeElapsed = String.format("TOTAL TIME = %d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(endTime),
+    			TimeUnit.MILLISECONDS.toSeconds(endTime) - 
+    		    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(endTime)));
+		System.out.println(timeElapsed);
+	}
+	
+	public List<String> readListFromFile(File pathList){
+		List<String> list = new ArrayList<String>();
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(pathList),StandardCharsets.UTF_8))){
+			String line;
+			while((line = br.readLine())!= null){
+				list.add(line);
+			}
+			br.close();
+		}catch(IOException e){
+			
+		}
+		return list;
+	}
+	
+	public BufferedReader getBufferedReaderForCompressedFile(String fileIn) throws FileNotFoundException, CompressorException {
+	    FileInputStream fin = new FileInputStream(fileIn);
+	    BufferedInputStream bis = new BufferedInputStream(fin);
+	    CompressorInputStream input = new CompressorStreamFactory().createCompressorInputStream(bis);
+	    BufferedReader br2 = new BufferedReader(new InputStreamReader(input));
+	    return br2;
+	}
+	
+	public void createTempFiles(int begin, int end,  List<String> list, BufferedReader br, String outputFolder, String sender) throws IOException{
+		for(int i = begin ; i < end; i++){
+			String article = list.get(i);
+			List<String> lines = new ArrayList<String>();
+			if(last.length() > 0)
+				lines.add(last);
+			String outputName = generateName(article);
+			lines.addAll(extractArticleLines(br, article));
+			writeTempFile(outputFolder+"/"+outputName, lines);
+			String indexArticle = sender + " - " + i;
+			String numTriples = sender + " - " + lines.size();
+			if(mapArticleCounter.containsKey(article)){
+				mapArticleCounter.get(article).update(indexArticle, numTriples);
+			}else{
+				Report report = new Report(article, outputName, notInLinksList.contains(article), indexArticle, numTriples);
+				mapArticleCounter.put(article, report);
+			}
+		}
+	}
+	
+	public List<String> extractArticleLines(BufferedReader br, String article) throws IOException{
+		List<String> lines = new ArrayList<String>();
+		String line;
+		while((line = br.readLine()) != null){
+			if(!line.contains("<http://simple.dbpedia.org/resource/"))
+				continue;
+			if(line.contains(article+"?dbpv=2016-10")){
+//				System.out.println(article);
+				lines.add(line);
+			}else{
+				//System.out.println("last Article (" +article+ ") was reached");
+				last = line;
+				break;
+			}
+		}
+		return lines;
+	}
+	
+	public String generateName(String uri){
+		uri = uri.replace("<http://simple.dbpedia.org/resource/", "");
+		uri = uri.split("\\?")[0].replace("/", "_____");
+		return uri;
+	}
+	
+	public String printMapArticles(){
+		String data = "";
+		for(Map.Entry<String, Report> entry : mapArticleCounter.entrySet()){
+			System.out.println(entry.getValue().getTimesProcessed() + " ----- " + entry.getValue().isInLink() + " ----- " +entry.getKey());
+			data += entry.getValue().getTimesProcessed() + "\t" + entry.getValue().isInLink() + "\t" +entry.getKey() + "\n";
+		}
+		return data;
+	}
+	
+	public void writeReport(String reportDirectory, String reportName, String reportData){
+		String output  = reportDirectory + "/" + reportName;
+		try(PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8))){
+			pw.write(reportData);
+			pw.close();
+		}catch(IOException e){
+			
+		}
+	}
+	
+	public void writeTempFile(String output, List<String> lines ){
+		File file = new File(output);
+		if(!file.exists()){
+//			System.out.println(counter + "-" + output);
+			counter++;
+		}
+		
+		try(PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(output,true), StandardCharsets.UTF_8))){
+			for(String line : lines){
+				pw.write(line + "\n");
+			}
+			pw.close();
+		}catch(IOException e){
+			
+		}
+	}
+
+}

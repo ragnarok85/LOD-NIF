@@ -70,8 +70,8 @@ public class Main {
 		int numArticlesToProcess = 1000;
 		for(int i = numArticlesToProcess, j = 0 ; i < contextList.size(); ){
 			System.out.println("begin = " + j + "-- End = " + i);
-			j = i;
 			
+			//TODO run the experiment on monday
 			main.createTempFiles(j, i, contextList, brContext, outputFolder, "context");
 			main.lastContextLine = main.last;
 			main.last= "";
@@ -111,6 +111,7 @@ public class Main {
 				System.out.println(entry.getKey());
 			}
 			
+			j = i;
 			
 			if(i == contextList.size()-1)
 				break;
@@ -193,6 +194,7 @@ public class Main {
 	}
 	
 	public void createTempFiles(int begin, int end,  List<String> list, BufferedReader br, String outputFolder, String sender) throws IOException{
+		System.out.println(begin + " --- " + end);
 		for(int i = begin ; i < end; i++){
 			String article = list.get(i);
 			List<String> lines = new ArrayList<String>();

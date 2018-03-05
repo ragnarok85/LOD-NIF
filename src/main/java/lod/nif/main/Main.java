@@ -92,35 +92,35 @@ public class Main {
 //			main.lastLinksLine = main.last;
 //			main.last= "";
 			
-			//articlesData = main.printMapArticles();
+			articlesData = main.printMapArticles();
 			
-//			LOD lod = new LOD();
-//			List<String> removeList = new ArrayList<String>();
-//			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-//				Report report = entry.getValue();
-//				if(main.notInLinksList.contains(report.getArticle())){
-//					if(report.getTimesProcessed() == 2){
-//						report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
-//						removeList.add(entry.getKey());
-//						reportData += report.toString() + "\n";
-//					}
-//				}else if(report.getTimesProcessed() == 3){
-//					System.out.println("outputName = "+report.getOutputName());
-//					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
-//					removeList.add(entry.getKey());
-//					reportData += report.toString() + "\n";
-//				}
-//			}
-//			
-//			for(String r : removeList){
-//				File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
-//				file.delete();
-//				main.mapArticleCounter.remove(r);
-//			}
-//			System.out.println("Remaining files: ");
-//			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-//				System.out.println(entry.getKey());
-//			}
+			LOD lod = new LOD();
+			List<String> removeList = new ArrayList<String>();
+			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+				Report report = entry.getValue();
+				if(main.notInLinksList.contains(report.getArticle())){
+					if(report.getTimesProcessed() == 2){
+						report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+						removeList.add(entry.getKey());
+						reportData += report.toString() + "\n";
+					}
+				}else if(report.getTimesProcessed() == 3){
+					System.out.println("outputName = "+report.getOutputName());
+					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+					removeList.add(entry.getKey());
+					reportData += report.toString() + "\n";
+				}
+			}
+			
+			for(String r : removeList){
+				File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
+				file.delete();
+				main.mapArticleCounter.remove(r);
+			}
+			System.out.println("Remaining files: ");
+			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+				System.out.println(entry.getKey());
+			}
 			
 			j = i;
 			
@@ -269,7 +269,7 @@ public class Main {
 		String data = "";
 		int counter = 0;
 		for(Map.Entry<String, Report> entry : mapArticleCounter.entrySet()){
-			System.out.println(counter++ + "--" +entry.getValue().getTimesProcessed() + " ----- " + entry.getValue().isInLink() + " ----- " +entry.getKey());
+			//System.out.println(counter++ + "--" +entry.getValue().getTimesProcessed() + " ----- " + entry.getValue().isInLink() + " ----- " +entry.getKey());
 			data += entry.getValue().getTimesProcessed() + "\t" + entry.getValue().isInLink() + "\t" +entry.getKey() + "\n";
 		}
 		return data;

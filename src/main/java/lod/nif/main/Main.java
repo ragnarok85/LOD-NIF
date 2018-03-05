@@ -21,8 +21,11 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.apache.log4j.Logger;
 
 public class Main {
+	
+	private static Logger logger = Logger.getLogger(Main.class);
 	/*
 	 * args[0-2] - Context, page and links (in that order) lists.
 	 * args[3] - list of articles not found in Links
@@ -56,11 +59,12 @@ public class Main {
 		String outputLod = args[8];
 		String outputReports = args[9];
 		
+		System.out.println("Creating BufferedReader from BZ2 files");
 		BufferedReader brContext = main.getBufferedReaderForCompressedFile(pathContextBZ2);
 		BufferedReader brPage = main.getBufferedReaderForCompressedFile(pathPageBZ2);
 		BufferedReader brLinks = main.getBufferedReaderForCompressedFile(pathLinksBZ2);
 		
-		
+		System.out.println("Loading the list of articles from context, page and link");
 		List<String> contextList = main.readListFromFile(pathContextList);
 		List<String> pageList = main.readListFromFile(pathPageList);
 		List<String> linksList = main.readListFromFile(pathLinksList);
@@ -72,44 +76,51 @@ public class Main {
 			System.out.println("begin = " + j + "-- End = " + i);
 			
 			//TODO run the experiment on monday
-			main.createTempFiles(j, i, contextList, brContext, outputFolder, "context");
-			main.lastContextLine = main.last;
-			main.last= "";
+			System.out.println("Extracting triples from page");
 			main.createTempFiles(j, i, pageList, brPage, outputFolder, "page");
-			main.lastPageLine = main.last;
-			main.last= "";
-			main.createTempFiles(j , i, linksList, brLinks, outputFolder, "links");
-			main.lastLinksLine = main.last;
-			main.last= "";
 			
-			articlesData = main.printMapArticles();
+			System.out.println("Extracting triples from context");
+//			main.last = main.lastContextLine;
+			main.createTempFiles(j, i, contextList, brContext, outputFolder, "context");
+//			main.lastContextLine = main.last;
+//			main.last= main.lastPageLine;
 			
-			LOD lod = new LOD();
-			List<String> removeList = new ArrayList<String>();
-			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-				Report report = entry.getValue();
-				if(main.notInLinksList.contains(report.getArticle())){
-					if(report.getTimesProcessed() == 2){
-						report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
-						removeList.add(entry.getKey());
-						reportData += report.toString() + "\n";
-					}
-				}else if(report.getTimesProcessed() == 3){
-					System.out.println("outputName = "+report.getOutputName());
-					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
-					removeList.add(entry.getKey());
-					reportData += report.toString() + "\n";
-				}
-			}
-			for(String r : removeList){
-				File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
-				file.delete();
-				main.mapArticleCounter.remove(r);
-			}
-			System.out.println("Remaining files: ");
-			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-				System.out.println(entry.getKey());
-			}
+//			main.lastPageLine = main.last;
+//			main.last= main.lastLinksLine;
+			System.out.println("Extracting triples from linkst");
+			main.createTempFiles(j , i, linksList, brLinks, outputFolder, "link");
+//			main.lastLinksLine = main.last;
+//			main.last= "";
+			
+			//articlesData = main.printMapArticles();
+			
+//			LOD lod = new LOD();
+//			List<String> removeList = new ArrayList<String>();
+//			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+//				Report report = entry.getValue();
+//				if(main.notInLinksList.contains(report.getArticle())){
+//					if(report.getTimesProcessed() == 2){
+//						report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+//						removeList.add(entry.getKey());
+//						reportData += report.toString() + "\n";
+//					}
+//				}else if(report.getTimesProcessed() == 3){
+//					System.out.println("outputName = "+report.getOutputName());
+//					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
+//					removeList.add(entry.getKey());
+//					reportData += report.toString() + "\n";
+//				}
+//			}
+//			
+//			for(String r : removeList){
+//				File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
+//				file.delete();
+//				main.mapArticleCounter.remove(r);
+//			}
+//			System.out.println("Remaining files: ");
+//			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+//				System.out.println(entry.getKey());
+//			}
 			
 			j = i;
 			
@@ -193,38 +204,54 @@ public class Main {
 	    return br2;
 	}
 	
-	public void createTempFiles(int begin, int end,  List<String> list, BufferedReader br, String outputFolder, String sender) throws IOException{
-		System.out.println(begin + " --- " + end);
-		for(int i = begin ; i < end; i++){
+	public void createTempFiles(int begin, int end,  List<String> list, BufferedReader br, 
+			String outputFolder, String sender) throws IOException{
+		if(end > list.size())
+			end = list.size();
+		System.out.println("Sender = " + sender);
+		for(int i = begin ; i < end ; i++){
 			String article = list.get(i);
 			List<String> lines = new ArrayList<String>();
-			if(last.length() > 0)
-				lines.add(last);
+//			if(last.length() > 0)
+//				lines.add("LAST"+last);
 			String outputName = generateName(article);
 			lines.addAll(extractArticleLines(br, article));
-			writeTempFile(outputFolder+"/"+outputName, lines);
-			String indexArticle = sender + " - " + i;
-			String numTriples = sender + " - " + lines.size();
-			if(mapArticleCounter.containsKey(article)){
-				mapArticleCounter.get(article).update(indexArticle, numTriples);
-			}else{
-				Report report = new Report(article, outputName, notInLinksList.contains(article), indexArticle, numTriples);
-				mapArticleCounter.put(article, report);
+			if(lines.size() > 0) {
+				//writeTempFile(outputFolder+"/"+sender + "/" + outputName, lines);
+				writeTempFile(outputFolder+"/"+ outputName, lines);
+				writeTempFileLine(outputFolder, sender);
+				String indexArticle = sender + " - " + i;
+				String numTriples = sender + " - " + lines.size();
+				if(mapArticleCounter.containsKey(article)){
+					mapArticleCounter.get(article).update(indexArticle, numTriples);
+				}else{
+					Report report = new Report(article, outputName, notInLinksList.contains(article), indexArticle, numTriples);
+					mapArticleCounter.put(article, report);
+				}
 			}
 		}
 	}
-	
+	int counter2 = 0;
 	public List<String> extractArticleLines(BufferedReader br, String article) throws IOException{
 		List<String> lines = new ArrayList<String>();
 		String line;
+		
+		if(last.length() == 0 ) {
+			line = br.readLine();
+			article = line.split("\\?")[0];
+		}else {
+			article = last.split("\\?")[0];
+		}
 		while((line = br.readLine()) != null){
-			if(!line.contains("<http://simple.dbpedia.org/resource/"))
+			String lineSub = line.length() > 40 ? line.substring(0, 36) : "";
+			//System.out.println(counter2 ++ + "--" + lineSub + "--" + lineSub.equalsIgnoreCase("<http://simple.dbpedia.org/resource/")+ "--" + line);
+			if(!lineSub.equalsIgnoreCase("<http://simple.dbpedia.org/resource/")) {
 				continue;
-			if(line.contains(article+"?dbpv=2016-10")){
-//				System.out.println(article);
+			}
+//			System.out.println(article + "-- " + line.contains(article+"?dbpv")  + "---" + line);
+			if(line.contains(article+"?dbpv")){//dbpv=2016-10
 				lines.add(line);
 			}else{
-				//System.out.println("last Article (" +article+ ") was reached");
 				last = line;
 				break;
 			}
@@ -240,8 +267,9 @@ public class Main {
 	
 	public String printMapArticles(){
 		String data = "";
+		int counter = 0;
 		for(Map.Entry<String, Report> entry : mapArticleCounter.entrySet()){
-			System.out.println(entry.getValue().getTimesProcessed() + " ----- " + entry.getValue().isInLink() + " ----- " +entry.getKey());
+			System.out.println(counter++ + "--" +entry.getValue().getTimesProcessed() + " ----- " + entry.getValue().isInLink() + " ----- " +entry.getKey());
 			data += entry.getValue().getTimesProcessed() + "\t" + entry.getValue().isInLink() + "\t" +entry.getKey() + "\n";
 		}
 		return data;
@@ -268,6 +296,19 @@ public class Main {
 			for(String line : lines){
 				pw.write(line + "\n");
 			}
+			pw.close();
+		}catch(IOException e){
+			
+		}
+	}
+	
+	public void writeTempFileLine(String output, String sender){
+		String outputName = generateName(last);
+//		String o = output+"/"+sender + "/"+outputName;
+		String o = output+"/"+outputName;
+		try(PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(o,true), StandardCharsets.UTF_8))){
+			pw.write(last + "\n");
+			last = "";
 			pw.close();
 		}catch(IOException e){
 			

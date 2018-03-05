@@ -1,0 +1,360 @@
+Creating BufferedReader from BZ2 files
+Loading the list of articles from context, page and link
+begin = 0-- End = 1000
+Extracting triples from page
+Sender = page
+begin = 1000-- End = 2000
+Extracting triples from page
+Sender = page
+begin = 2000-- End = 3000
+Extracting triples from page
+Sender = page
+begin = 3000-- End = 4000
+Extracting triples from page
+Sender = page
+begin = 4000-- End = 5000
+Extracting triples from page
+Sender = page
+begin = 5000-- End = 6000
+Extracting triples from page
+Sender = page
+begin = 6000-- End = 7000
+Extracting triples from page
+Sender = page
+begin = 7000-- End = 8000
+Extracting triples from page
+Sender = page
+begin = 8000-- End = 9000
+Extracting triples from page
+Sender = page
+begin = 9000-- End = 10000
+Extracting triples from page
+Sender = page
+begin = 10000-- End = 11000
+Extracting triples from page
+Sender = page
+begin = 11000-- End = 12000
+Extracting triples from page
+Sender = page
+begin = 12000-- End = 13000
+Extracting triples from page
+Sender = page
+begin = 13000-- End = 14000
+Extracting triples from page
+Sender = page
+begin = 14000-- End = 15000
+Extracting triples from page
+Sender = page
+begin = 15000-- End = 16000
+Extracting triples from page
+Sender = page
+begin = 16000-- End = 17000
+Extracting triples from page
+Sender = page
+begin = 17000-- End = 18000
+Extracting triples from page
+Sender = page
+begin = 18000-- End = 19000
+Extracting triples from page
+Sender = page
+begin = 19000-- End = 20000
+Extracting triples from page
+Sender = page
+begin = 20000-- End = 21000
+Extracting triples from page
+Sender = page
+begin = 21000-- End = 22000
+Extracting triples from page
+Sender = page
+begin = 22000-- End = 23000
+Extracting triples from page
+Sender = page
+begin = 23000-- End = 24000
+Extracting triples from page
+Sender = page
+begin = 24000-- End = 25000
+Extracting triples from page
+Sender = page
+begin = 25000-- End = 26000
+Extracting triples from page
+Sender = page
+begin = 26000-- End = 27000
+Extracting triples from page
+Sender = page
+begin = 27000-- End = 28000
+Extracting triples from page
+Sender = page
+begin = 28000-- End = 29000
+Extracting triples from page
+Sender = page
+begin = 29000-- End = 30000
+Extracting triples from page
+Sender = page
+begin = 30000-- End = 31000
+Extracting triples from page
+Sender = page
+begin = 31000-- End = 32000
+Extracting triples from page
+Sender = page
+begin = 32000-- End = 33000
+Extracting triples from page
+Sender = page
+begin = 33000-- End = 34000
+Extracting triples from page
+Sender = page
+begin = 34000-- End = 35000
+Extracting triples from page
+Sender = page
+begin = 35000-- End = 36000
+Extracting triples from page
+Sender = page
+begin = 36000-- End = 37000
+Extracting triples from page
+Sender = page
+begin = 37000-- End = 38000
+Extracting triples from page
+Sender = page
+begin = 38000-- End = 39000
+Extracting triples from page
+Sender = page
+begin = 39000-- End = 40000
+Extracting triples from page
+Sender = page
+begin = 40000-- End = 41000
+Extracting triples from page
+Sender = page
+begin = 41000-- End = 42000
+Extracting triples from page
+Sender = page
+begin = 42000-- End = 43000
+Extracting triples from page
+Sender = page
+begin = 43000-- End = 44000
+Extracting triples from page
+Sender = page
+begin = 44000-- End = 45000
+Extracting triples from page
+Sender = page
+begin = 45000-- End = 46000
+Extracting triples from page
+Sender = page
+begin = 46000-- End = 47000
+Extracting triples from page
+Sender = page
+begin = 47000-- End = 48000
+Extracting triples from page
+Sender = page
+begin = 48000-- End = 49000
+Extracting triples from page
+Sender = page
+begin = 49000-- End = 50000
+Extracting triples from page
+Sender = page
+begin = 50000-- End = 51000
+Extracting triples from page
+Sender = page
+begin = 51000-- End = 52000
+Extracting triples from page
+Sender = page
+begin = 52000-- End = 53000
+Extracting triples from page
+Sender = page
+begin = 53000-- End = 54000
+Extracting triples from page
+Sender = page
+begin = 54000-- End = 55000
+Extracting triples from page
+Sender = page
+begin = 55000-- End = 56000
+Extracting triples from page
+Sender = page
+begin = 56000-- End = 57000
+Extracting triples from page
+Sender = page
+begin = 57000-- End = 58000
+Extracting triples from page
+Sender = page
+begin = 58000-- End = 59000
+Extracting triples from page
+Sender = page
+begin = 59000-- End = 60000
+Extracting triples from page
+Sender = page
+begin = 60000-- End = 61000
+Extracting triples from page
+Sender = page
+begin = 61000-- End = 62000
+Extracting triples from page
+Sender = page
+begin = 62000-- End = 63000
+Extracting triples from page
+Sender = page
+begin = 63000-- End = 64000
+Extracting triples from page
+Sender = page
+begin = 64000-- End = 65000
+Extracting triples from page
+Sender = page
+begin = 65000-- End = 66000
+Extracting triples from page
+Sender = page
+begin = 66000-- End = 67000
+Extracting triples from page
+Sender = page
+begin = 67000-- End = 68000
+Extracting triples from page
+Sender = page
+begin = 68000-- End = 69000
+Extracting triples from page
+Sender = page
+begin = 69000-- End = 70000
+Extracting triples from page
+Sender = page
+begin = 70000-- End = 71000
+Extracting triples from page
+Sender = page
+begin = 71000-- End = 72000
+Extracting triples from page
+Sender = page
+begin = 72000-- End = 73000
+Extracting triples from page
+Sender = page
+begin = 73000-- End = 74000
+Extracting triples from page
+Sender = page
+begin = 74000-- End = 75000
+Extracting triples from page
+Sender = page
+begin = 75000-- End = 76000
+Extracting triples from page
+Sender = page
+begin = 76000-- End = 77000
+Extracting triples from page
+Sender = page
+begin = 77000-- End = 78000
+Extracting triples from page
+Sender = page
+begin = 78000-- End = 79000
+Extracting triples from page
+Sender = page
+begin = 79000-- End = 80000
+Extracting triples from page
+Sender = page
+begin = 80000-- End = 81000
+Extracting triples from page
+Sender = page
+begin = 81000-- End = 82000
+Extracting triples from page
+Sender = page
+begin = 82000-- End = 83000
+Extracting triples from page
+Sender = page
+begin = 83000-- End = 84000
+Extracting triples from page
+Sender = page
+begin = 84000-- End = 85000
+Extracting triples from page
+Sender = page
+begin = 85000-- End = 86000
+Extracting triples from page
+Sender = page
+begin = 86000-- End = 87000
+Extracting triples from page
+Sender = page
+begin = 87000-- End = 88000
+Extracting triples from page
+Sender = page
+begin = 88000-- End = 89000
+Extracting triples from page
+Sender = page
+begin = 89000-- End = 90000
+Extracting triples from page
+Sender = page
+begin = 90000-- End = 91000
+Extracting triples from page
+Sender = page
+begin = 91000-- End = 92000
+Extracting triples from page
+Sender = page
+begin = 92000-- End = 93000
+Extracting triples from page
+Sender = page
+begin = 93000-- End = 94000
+Extracting triples from page
+Sender = page
+begin = 94000-- End = 95000
+Extracting triples from page
+Sender = page
+begin = 95000-- End = 96000
+Extracting triples from page
+Sender = page
+begin = 96000-- End = 97000
+Extracting triples from page
+Sender = page
+begin = 97000-- End = 98000
+Extracting triples from page
+Sender = page
+begin = 98000-- End = 99000
+Extracting triples from page
+Sender = page
+begin = 99000-- End = 100000
+Extracting triples from page
+Sender = page
+begin = 100000-- End = 101000
+Extracting triples from page
+Sender = page
+begin = 101000-- End = 102000
+Extracting triples from page
+Sender = page
+begin = 102000-- End = 103000
+Extracting triples from page
+Sender = page
+begin = 103000-- End = 104000
+Extracting triples from page
+Sender = page
+begin = 104000-- End = 105000
+Extracting triples from page
+Sender = page
+begin = 105000-- End = 106000
+Extracting triples from page
+Sender = page
+begin = 106000-- End = 107000
+Extracting triples from page
+Sender = page
+begin = 107000-- End = 108000
+Extracting triples from page
+Sender = page
+begin = 108000-- End = 109000
+Extracting triples from page
+Sender = page
+begin = 109000-- End = 110000
+Extracting triples from page
+Sender = page
+begin = 110000-- End = 111000
+Extracting triples from page
+Sender = page
+begin = 111000-- End = 112000
+Extracting triples from page
+Sender = page
+begin = 112000-- End = 113000
+Extracting triples from page
+Sender = page
+begin = 113000-- End = 114000
+Extracting triples from page
+Sender = page
+begin = 114000-- End = 115000
+Extracting triples from page
+Sender = page
+begin = 115000-- End = 116000
+Extracting triples from page
+Sender = page
+begin = 116000-- End = 117000
+Extracting triples from page
+Sender = page
+begin = 117000-- End = 118000
+Extracting triples from page
+Sender = page
+begin = 118000-- End = 118625
+Extracting triples from page
+Sender = page
+TOTAL TIME = 1 min, 24 sec

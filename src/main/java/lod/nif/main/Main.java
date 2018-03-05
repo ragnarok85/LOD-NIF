@@ -210,15 +210,17 @@ public class Main {
 			end = list.size();
 		System.out.println("Sender = " + sender);
 		for(int i = begin ; i < end ; i++){
-			String article = list.get(i);
+			String article = "";
 			List<String> lines = new ArrayList<String>();
 //			if(last.length() > 0)
 //				lines.add("LAST"+last);
-			String outputName = generateName(article);
-			lines.addAll(extractArticleLines(br, article));
+//			String outputName = generateName(article);
+			article = extractArticleLines(br, lines);
+			
 			if(lines.size() > 0) {
+				String outputName = generateName(lines.get(0));
 				//writeTempFile(outputFolder+"/"+sender + "/" + outputName, lines);
-				writeTempFile(outputFolder+"/"+ outputName, lines);
+				writeTempFile(outputFolder+"/" + outputName, lines);
 				writeTempFileLine(outputFolder, sender);
 				String indexArticle = sender + " - " + i;
 				String numTriples = sender + " - " + lines.size();
@@ -231,13 +233,11 @@ public class Main {
 			}
 		}
 	}
-	int counter2 = 0;
-	public List<String> extractArticleLines(BufferedReader br, String article) throws IOException{
-		List<String> lines = new ArrayList<String>();
-		String line;
-		
-		if(last.length() == 0 ) {
-			line = br.readLine();
+
+	public String extractArticleLines(BufferedReader br, List<String> lines) throws IOException{
+		String line = "";
+		String article;
+		if(last.length() == 0 && (line = br.readLine()) != null ) {
 			article = line.split("\\?")[0];
 		}else {
 			article = last.split("\\?")[0];
@@ -256,10 +256,11 @@ public class Main {
 				break;
 			}
 		}
-		return lines;
+		return article;
 	}
 	
 	public String generateName(String uri){
+		uri = uri.split("\\?")[0];
 		uri = uri.replace("<http://simple.dbpedia.org/resource/", "");
 		uri = uri.split("\\?")[0].replace("/", "_____");
 		return uri;
@@ -305,7 +306,7 @@ public class Main {
 	public void writeTempFileLine(String output, String sender){
 		String outputName = generateName(last);
 //		String o = output+"/"+sender + "/"+outputName;
-		String o = output+"/"+outputName;
+		String o = output+"/"+ outputName;
 		try(PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(o,true), StandardCharsets.UTF_8))){
 			pw.write(last + "\n");
 			last = "";

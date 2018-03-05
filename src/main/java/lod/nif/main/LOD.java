@@ -87,18 +87,24 @@ public class LOD {
 		OutputStream os = Files.newOutputStream(Paths.get(outputPath));
 		BufferedOutputStream bos = new BufferedOutputStream(os);
 		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
-		model.read(filePath,"NTRIPLES");
+		File path = new File(filePath);
+		if(path.exists()){
+			model.read(filePath,"NTRIPLES");
+			
+			model.setNsPrefix("nif", "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#");
+			model.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+			model.setNsPrefix("skos", "http://www.w3.org/2004/02/skos/core#");
+			model.setNsPrefix("itsrdf", "http://www.w3.org/2005/11/its/rdf#");
+			model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
+			model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema# ");
+			
+			model.write(outputStream, "TURTLE");
+			outputStream.close();
+			model.close();
+		}else{
+			System.out.println("Path (" + path.getAbsolutePath() + ") does not exist ");
+		}
 		
-		model.setNsPrefix("nif", "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#");
-		model.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-		model.setNsPrefix("skos", "http://www.w3.org/2004/02/skos/core#");
-		model.setNsPrefix("itsrdf", "http://www.w3.org/2005/11/its/rdf#");
-		model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
-		model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema# ");
-		
-		model.write(outputStream, "TURTLE");
-		outputStream.close();
-		model.close();
 //		File file = new File(filePath);
 //		file.delete();
 	}

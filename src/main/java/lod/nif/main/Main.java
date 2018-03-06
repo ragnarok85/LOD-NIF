@@ -14,8 +14,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.compress.compressors.CompressorException;
@@ -75,22 +77,14 @@ public class Main {
 		for(int i = numArticlesToProcess, j = 0 ; i < contextList.size(); ){
 			System.out.println("begin = " + j + "-- End = " + i);
 			
-			//TODO run the experiment on monday
 			System.out.println("Extracting triples from page");
 			main.createTempFiles(j, i, pageList, brPage, outputFolder, "page");
 			
 			System.out.println("Extracting triples from context");
-//			main.last = main.lastContextLine;
 			main.createTempFiles(j, i, contextList, brContext, outputFolder, "context");
-//			main.lastContextLine = main.last;
-//			main.last= main.lastPageLine;
-			
-//			main.lastPageLine = main.last;
-//			main.last= main.lastLinksLine;
+
 			System.out.println("Extracting triples from linkst");
 			main.createTempFiles(j , i, linksList, brLinks, outputFolder, "link");
-//			main.lastLinksLine = main.last;
-//			main.last= "";
 			
 			articlesData = main.printMapArticles();
 			
@@ -133,48 +127,9 @@ public class Main {
 			}
 			
 		}
-//		main.createTempFiles(numArticlesToProcess, contextList, brContext, outputFolder, "context");
-//		main.lastContextLine = main.last;
-//		main.last= "";
-//		main.createTempFiles(numArticlesToProcess, pageList, brPage, outputFolder, "page");
-//		main.lastPageLine = main.last;
-//		main.last= "";
-//		main.createTempFiles(numArticlesToProcess, linksList, brLinks, outputFolder, "links");
-//		main.lastLinksLine = main.last;
-//		main.last= "";
-//		
-//		String articlesData = main.printMapArticles();
-//		
-//		LOD lod = new LOD();
-//		List<String> removeList = new ArrayList<String>();
-//		String reportData = "";
-//		for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-//			Report report = entry.getValue();
-//			if(main.notInLinksList.contains(report.getArticle())){
-//				if(report.getTimesProcessed() == 2){
-//					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
-//					removeList.add(entry.getKey());
-//					reportData += report.toString() + "\n";
-//				}
-//			}else if(report.getTimesProcessed() == 3){
-//				System.out.println("outputName = "+report.getOutputName());
-//				report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
-//				removeList.add(entry.getKey());
-//				reportData += report.toString() + "\n";
-//			}
-//		}
-//		for(String r : removeList){
-//			File file = new File(outputFolder + "/" + main.mapArticleCounter.get(r).getOutputName());
-//			file.delete();
-//			main.mapArticleCounter.remove(r);
-//		}
-//		System.out.println("Remaining files: ");
-//		for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-//			System.out.println(entry.getKey());
-//		}
-		
 		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
 		main.writeReport(outputReports, "reports.tsv", reportData);
+		main.extractArticlesProcessed(outputReports);
 		long endTime = System.currentTimeMillis() - initialTime;
 		String timeElapsed = String.format("TOTAL TIME = %d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(endTime),
     			TimeUnit.MILLISECONDS.toSeconds(endTime) - 
@@ -204,6 +159,7 @@ public class Main {
 	    return br2;
 	}
 	
+	Set<String> setArticles = new HashSet<String>();
 	public void createTempFiles(int begin, int end,  List<String> list, BufferedReader br, 
 			String outputFolder, String sender) throws IOException{
 		if(end > list.size())
@@ -212,14 +168,12 @@ public class Main {
 		for(int i = begin ; i < end ; i++){
 			String article = "";
 			List<String> lines = new ArrayList<String>();
-//			if(last.length() > 0)
-//				lines.add("LAST"+last);
-//			String outputName = generateName(article);
+			
 			article = extractArticleLines(br, lines);
 			
 			if(lines.size() > 0) {
+				setArticles.add(sender+"999999"+article);
 				String outputName = generateName(lines.get(0));
-				//writeTempFile(outputFolder+"/"+sender + "/" + outputName, lines);
 				writeTempFile(outputFolder+"/" + outputName, lines);
 				writeTempFileLine(outputFolder, sender);
 				String indexArticle = sender + " - " + i;
@@ -257,6 +211,26 @@ public class Main {
 			}
 		}
 		return article;
+	}
+	
+	public void extractArticlesProcessed(String reportDirectory){
+		String link = "";
+		String context = "";
+		String page = "";
+		for(String a : setArticles){
+			String[] splitA = a.split("999999");
+			if(splitA[0].equalsIgnoreCase("context")){
+				context += splitA[1] + "\n";
+			}else if(splitA[0].equalsIgnoreCase("page")){
+				page += splitA[1] + "\n";
+			}else if(splitA[0].equalsIgnoreCase("link")){
+				link += splitA[1] + "\n";
+			}
+		}
+		
+		writeReport(reportDirectory, "link", link);
+		writeReport(reportDirectory, "page", page);
+		writeReport(reportDirectory, "context", context);
 	}
 	
 	public String generateName(String uri){
@@ -315,5 +289,7 @@ public class Main {
 			
 		}
 	}
+	
+	
 
 }

@@ -61,12 +61,12 @@ public class Main {
 		String outputLod = args[8];
 		String outputReports = args[9];
 		
-		System.out.println("Creating BufferedReader from BZ2 files");
+//		System.out.println("Creating BufferedReader from BZ2 files");
 		BufferedReader brContext = main.getBufferedReaderForCompressedFile(pathContextBZ2);
 		BufferedReader brPage = main.getBufferedReaderForCompressedFile(pathPageBZ2);
 		BufferedReader brLinks = main.getBufferedReaderForCompressedFile(pathLinksBZ2);
 		
-		System.out.println("Loading the list of articles from context, page and link");
+//		System.out.println("Loading the list of articles from context, page and link");
 		List<String> contextList = main.readListFromFile(pathContextList);
 		List<String> pageList = main.readListFromFile(pathPageList);
 		List<String> linksList = main.readListFromFile(pathLinksList);
@@ -125,8 +125,8 @@ public class Main {
 			if(i > contextList.size()){
 				i = contextList.size()-1;
 			}
-			
 		}
+		
 		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
 		main.writeReport(outputReports, "reports.tsv", reportData);
 		main.extractArticlesProcessed(outputReports);
@@ -160,6 +160,7 @@ public class Main {
 	}
 	
 	Set<String> setArticles = new HashSet<String>();
+	int brCounter = 0;
 	public void createTempFiles(int begin, int end,  List<String> list, BufferedReader br, 
 			String outputFolder, String sender) throws IOException{
 		if(end > list.size())
@@ -168,9 +169,9 @@ public class Main {
 		for(int i = begin ; i < end ; i++){
 			String article = "";
 			List<String> lines = new ArrayList<String>();
-			
 			article = extractArticleLines(br, lines);
-			
+			setArticles.add(article);
+			System.out.println(brCounter++ + "-"  + lines.size() + "-" + article);
 			if(lines.size() > 0) {
 				setArticles.add(sender+"999999"+article);
 				String outputName = generateName(lines.get(0));
@@ -187,22 +188,22 @@ public class Main {
 			}
 		}
 	}
-
+	
 	public String extractArticleLines(BufferedReader br, List<String> lines) throws IOException{
 		String line = "";
 		String article;
 		if(last.length() == 0 && (line = br.readLine()) != null ) {
-			article = line.split("\\?")[0];
+			article = line.split("\\?dbpv")[0];
 		}else {
-			article = last.split("\\?")[0];
+			article = last.split("\\?dbpv")[0];
 		}
 		while((line = br.readLine()) != null){
+			
 			String lineSub = line.length() > 40 ? line.substring(0, 36) : "";
-			//System.out.println(counter2 ++ + "--" + lineSub + "--" + lineSub.equalsIgnoreCase("<http://simple.dbpedia.org/resource/")+ "--" + line);
 			if(!lineSub.equalsIgnoreCase("<http://simple.dbpedia.org/resource/")) {
 				continue;
 			}
-//			System.out.println(article + "-- " + line.contains(article+"?dbpv")  + "---" + line);
+			
 			if(line.contains(article+"?dbpv")){//dbpv=2016-10
 				lines.add(line);
 			}else{
@@ -242,7 +243,6 @@ public class Main {
 	
 	public String printMapArticles(){
 		String data = "";
-		int counter = 0;
 		for(Map.Entry<String, Report> entry : mapArticleCounter.entrySet()){
 			//System.out.println(counter++ + "--" +entry.getValue().getTimesProcessed() + " ----- " + entry.getValue().isInLink() + " ----- " +entry.getKey());
 			data += entry.getValue().getTimesProcessed() + "\t" + entry.getValue().isInLink() + "\t" +entry.getKey() + "\n";

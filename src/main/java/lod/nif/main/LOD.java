@@ -43,7 +43,7 @@ public class LOD {
 	}
 	
 	public String lodFile(String article, String pathArticle, String output) throws NoSuchAlgorithmException, IOException{
-		System.out.println("pathArticle = "+pathArticle);
+//		System.out.println("pathArticle = "+pathArticle);
 		String outputPath = createOutputPath(article, output);
 		parseFile(outputPath+".ttl.bz2", pathArticle);
 		
@@ -62,7 +62,8 @@ public class LOD {
 	
 	public String md5(String name) throws NoSuchAlgorithmException {
 		String md5 = "";
-		String base = new String(("<http://nif.dbpedia.org/wiki/en/"+name).getBytes(),StandardCharsets.UTF_8);
+//		String base = new String(("<http://nif.dbpedia.org/wiki/en/"+name).getBytes(),StandardCharsets.UTF_8);
+		String base = new String(name.getBytes(),StandardCharsets.UTF_8);
 		byte[] fileName = base.getBytes();
 		MessageDigest md = MessageDigest.getInstance("MD5");
 		md5 = DatatypeConverter.printHexBinary(md.digest(fileName)).toLowerCase();
@@ -102,7 +103,7 @@ public class LOD {
 			outputStream.close();
 			model.close();
 		}else{
-			System.out.println("Path (" + path.getAbsolutePath() + ") does not exist ");
+//			System.out.println("Path (" + path.getAbsolutePath() + ") does not exist ");
 		}
 		
 //		File file = new File(filePath);

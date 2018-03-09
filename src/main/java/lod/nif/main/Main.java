@@ -129,7 +129,7 @@ public class Main {
 		
 		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
 		main.writeReport(outputReports, "reports.tsv", reportData);
-		main.extractArticlesProcessed(outputReports);
+//		main.extractArticlesProcessed(outputReports);
 		long endTime = System.currentTimeMillis() - initialTime;
 		String timeElapsed = String.format("TOTAL TIME = %d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(endTime),
     			TimeUnit.MILLISECONDS.toSeconds(endTime) - 
@@ -171,7 +171,7 @@ public class Main {
 			List<String> lines = new ArrayList<String>();
 			article = extractArticleLines(br, lines);
 			setArticles.add(article);
-			System.out.println(brCounter++ + "-"  + lines.size() + "-" + article);
+//			System.out.println(brCounter++ + "-"  + lines.size() + "-" + article);
 			if(lines.size() > 0) {
 				setArticles.add(sender+"999999"+article);
 				String outputName = generateName(lines.get(0));

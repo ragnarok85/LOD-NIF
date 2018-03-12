@@ -27,7 +27,7 @@ import org.apache.log4j.Logger;
 
 public class Main {
 	
-	private static Logger logger = Logger.getLogger(Main.class);
+	static final Logger logger = Logger.getLogger(Main.class);
 	/*
 	 * args[0-2] - Context, page and links (in that order) lists.
 	 * args[3] - list of articles not found in Links
@@ -75,15 +75,15 @@ public class Main {
 		String articlesData = "";
 		int numArticlesToProcess = 1000;
 		for(int i = numArticlesToProcess, j = 0 ; i < contextList.size(); ){
-			System.out.println("begin = " + j + "-- End = " + i);
+			logger.info("begin = " + j + "-- End = " + i);
 			
-			System.out.println("Extracting triples from page");
+			logger.info("Extracting triples from page");
 			main.createTempFiles(j, i, pageList, brPage, outputFolder, "page");
-			
-			System.out.println("Extracting triples from context");
+
+			logger.info("Extracting triples from context");
 			main.createTempFiles(j, i, contextList, brContext, outputFolder, "context");
 
-			System.out.println("Extracting triples from linkst");
+			logger.info("Extracting triples from linkst");
 			main.createTempFiles(j , i, linksList, brLinks, outputFolder, "link");
 			
 			articlesData = main.printMapArticles();
@@ -99,7 +99,7 @@ public class Main {
 						reportData += report.toString() + "\n";
 					}
 				}else if(report.getTimesProcessed() == 3){
-					System.out.println("outputName = "+report.getOutputName());
+					logger.info("outputName = "+report.getOutputName());
 					report.setOutputBz2(lod.lodFile(report.getArticle(),outputFolder+"/"+report.getOutputName(), outputLod));
 					removeList.add(entry.getKey());
 					reportData += report.toString() + "\n";
@@ -111,10 +111,10 @@ public class Main {
 				file.delete();
 				main.mapArticleCounter.remove(r);
 			}
-			System.out.println("Remaining files: ");
-			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
-				System.out.println(entry.getKey());
-			}
+//			System.out.println("Remaining files: ");
+//			for(Map.Entry<String, Report> entry : main.mapArticleCounter.entrySet()){
+//				System.out.println(entry.getKey());
+//			}
 			
 			j = i;
 			
@@ -127,14 +127,15 @@ public class Main {
 			}
 		}
 		
-		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
-		main.writeReport(outputReports, "reports.tsv", reportData);
-//		main.extractArticlesProcessed(outputReports);
 		long endTime = System.currentTimeMillis() - initialTime;
 		String timeElapsed = String.format("TOTAL TIME = %d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(endTime),
     			TimeUnit.MILLISECONDS.toSeconds(endTime) - 
     		    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(endTime)));
 		System.out.println(timeElapsed);
+		reportData += "\nTIME ELAPSED\t" + timeElapsed + "\n";
+		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
+		main.writeReport(outputReports, "reports.tsv", reportData);
+		main.extractArticlesProcessed(outputReports);
 	}
 	
 	public List<String> readListFromFile(File pathList){
@@ -165,7 +166,7 @@ public class Main {
 			String outputFolder, String sender) throws IOException{
 		if(end > list.size())
 			end = list.size();
-		System.out.println("Sender = " + sender);
+		logger.info("Sender = " + sender);
 		for(int i = begin ; i < end ; i++){
 			String article = "";
 			List<String> lines = new ArrayList<String>();
@@ -263,7 +264,7 @@ public class Main {
 	public void writeTempFile(String output, List<String> lines ){
 		File file = new File(output);
 		if(!file.exists()){
-//			System.out.println(counter + "-" + output);
+			logger.info(counter + "-" + output);
 			counter++;
 		}
 		

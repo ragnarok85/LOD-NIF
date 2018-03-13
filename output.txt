@@ -1,0 +1,16 @@
+log4j:WARN No appenders could be found for logger (lod.nif.main.Main).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+2018-03-13 09:18:18 INFO  Main:81 - begin = 0-- End = 1000
+0 [main] INFO lod.nif.main.Main  - begin = 0-- End = 1000
+2018-03-13 09:18:18 INFO  Main:83 - Extracting triples from page
+3 [main] INFO lod.nif.main.Main  - Extracting triples from page
+2018-03-13 09:18:18 INFO  Main:172 - Sender = page
+4 [main] INFO lod.nif.main.Main  - Sender = page
+2018-03-13 09:18:28 INFO  Main:81 - begin = 0-- End = 1000
+2018-03-13 09:18:28 INFO  Main:83 - Extracting triples from page
+2018-03-13 09:18:28 INFO  Main:172 - Sender = page
+2018-03-13 09:22:39 INFO  Main:82 - begin = 0-- End = 1000 of -- 118628
+2018-03-13 09:22:39 INFO  Main:84 - Extracting triples from page
+2018-03-13 09:22:39 INFO  Main:173 - Sender = page
+2018-03-13 09:22:39 INFO  Main:205 - Article = # started 2017-03-02T14:26:05Z

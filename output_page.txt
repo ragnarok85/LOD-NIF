@@ -1,3 +1,7 @@
-log4j:WARN No appenders could be found for logger (lod.nif.main.Main).
-log4j:WARN Please initialize the log4j system properly.
-log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at java.util.Arrays.copyOfRange(Arrays.java:3664)
+	at java.lang.String.<init>(String.java:207)
+	at java.io.BufferedReader.readLine(BufferedReader.java:356)
+	at java.io.BufferedReader.readLine(BufferedReader.java:389)
+	at lod.nif.main.Main.readListFromFile(Main.java:148)
+	at lod.nif.main.Main.main(Main.java:74)

@@ -23,11 +23,13 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 public class Main {
 	
 	static final Logger logger = Logger.getLogger(Main.class);
+	
 	/*
 	 * args[0-2] - Context, page and links (in that order) lists.
 	 * args[3] - list of articles not found in Links
@@ -48,6 +50,7 @@ public class Main {
 	
 	List<String> notInLinksList;
 	public static void main(String... args) throws CompressorException, IOException, NoSuchAlgorithmException{
+		BasicConfigurator.configure(); // Logger was not working
 		Main main = new Main();
 		long initialTime = System.currentTimeMillis();
 		File pathContextList = new File(args[0]);
@@ -201,12 +204,14 @@ public class Main {
 		while((line = br.readLine()) != null){
 			
 			String lineSub = line.length() > 40 ? line.substring(0, 36) : "";
-			if(!lineSub.equalsIgnoreCase("<http://simple.dbpedia.org/resource/")) {
+			//if(!lineSub.equalsIgnoreCase("<http://simple.dbpedia.org/resource/")) {
+			if(!lineSub.equalsIgnoreCase("<http://dbpedia.org/resource/")) {
 				continue;
 			}
 			
 			if(line.contains(article+"?dbpv")){//dbpv=2016-10
-				lines.add(line);
+				String newLine = line.replace("<http://dbpedia.org/resource/", "<http://nif.dbpedia.org/wiki/en/");
+				lines.add(newLine);
 			}else{
 				last = line;
 				break;
@@ -237,7 +242,8 @@ public class Main {
 	
 	public String generateName(String uri){
 		uri = uri.split("\\?")[0];
-		uri = uri.replace("<http://simple.dbpedia.org/resource/", "");
+		//uri = uri.replace("<http://simple.dbpedia.org/resource/", "");
+		uri = uri.replace("<http://dbpedia.org/resource/", "");
 		uri = uri.split("\\?")[0].replace("/", "_____");
 		return uri;
 	}

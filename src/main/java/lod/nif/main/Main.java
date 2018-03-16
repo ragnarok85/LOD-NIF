@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.codec.DecoderException;
 import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
@@ -53,7 +54,7 @@ public class Main {
 	private String replaceUri = "";
 	private boolean replacement = false;
 	public static void main(String... args) throws CompressorException,
-			IOException, NoSuchAlgorithmException {
+			IOException, NoSuchAlgorithmException, DecoderException {
 		// BasicConfigurator.configure(); // Logger was not working
 		Main main = new Main();
 		long initialTime = System.currentTimeMillis();
@@ -110,7 +111,7 @@ public class Main {
 			main.createTempFiles(j, i, contextList, brContext, outputFolder,
 					"context", originalUri);
 
-			logger.info("Extracting triples from linkst");
+			logger.info("Extracting triples from link");
 			main.createTempFiles(j, i, linksList, brLinks, outputFolder,
 					"link", originalUri);
 
@@ -121,15 +122,7 @@ public class Main {
 			for (Map.Entry<String, Report> entry : main.mapArticleCounter
 					.entrySet()) {
 				Report report = entry.getValue();
-				if (main.notInLinksList.contains(report.getArticle())) {
-					if (report.getTimesProcessed() == 2) {
-						report.setOutputBz2(lod.lodFile(report.getArticle(),
-								outputFolder + "/" + report.getOutputName(),
-								outputLod));
-						removeList.add(entry.getKey());
-						reportData += report.toString() + "\n";
-					}
-				} else if (report.getTimesProcessed() == 3) {
+				if (report.getTimesProcessed() == 3) {
 					logger.info("outputName = " + report.getOutputName());
 					report.setOutputBz2(lod.lodFile(report.getArticle(),
 							outputFolder + "/" + report.getOutputName(),
@@ -137,6 +130,22 @@ public class Main {
 					removeList.add(entry.getKey());
 					reportData += report.toString() + "\n";
 				}
+//				if (main.notInLinksList.contains(report.getArticle())) {
+//					if (report.getTimesProcessed() == 2) {
+//						report.setOutputBz2(lod.lodFile(report.getArticle(),
+//								outputFolder + "/" + report.getOutputName(),
+//								outputLod));
+//						removeList.add(entry.getKey());
+//						reportData += report.toString() + "\n";
+//					}
+//				} else if (report.getTimesProcessed() == 3) {
+//					logger.info("outputName = " + report.getOutputName());
+//					report.setOutputBz2(lod.lodFile(report.getArticle(),
+//							outputFolder + "/" + report.getOutputName(),
+//							outputLod));
+//					removeList.add(entry.getKey());
+//					reportData += report.toString() + "\n";
+//				}
 			}
 
 			for (String r : removeList) {
@@ -207,7 +216,7 @@ public class Main {
 
 	public void createTempFiles(int begin, int end, List<String> list,
 			BufferedReader br, String outputFolder, String sender,
-			String originalUri) throws IOException {
+			String originalUri) throws IOException, DecoderException {
 		if (end > list.size())
 			end = list.size();
 		logger.info("Sender = " + sender);
@@ -237,20 +246,20 @@ public class Main {
 	}
 
 	public String extractArticleLines(BufferedReader br, List<String> lines,
-			String originalUri) throws IOException {
+			String originalUri) throws IOException, DecoderException {
 		String line = "";
 		String article;
 		if (last.length() == 0 && (line = br.readLine()) != null) {
-			article = line.split("\\?dbpv")[0];
+			article = cleanLine(line.split("\\?dbpv")[0]);
 		} else {
-			article = last.split("\\?dbpv")[0];
+			article = cleanLine(last.split("\\?dbpv")[0]);
 		}
 		while ((line = br.readLine()) != null) {
 
 			if (!line.startsWith("<http://")) {
 				continue;
 			}
-			
+			line = cleanLine(line);
 			if(replacement){
 				line = line.replace(originalUri, replaceUri);
 			}
@@ -263,6 +272,19 @@ public class Main {
 			}
 		}
 		return article;
+	}
+	
+	public String cleanLine(String line) throws IOException, DecoderException {
+		if (line.contains("%")) {
+			if (line.contains("%3F"))
+				line = line.replaceAll("%3F", "?");
+//			else if (line.contains("%22"))
+//				line = line.replaceAll("%22", "\"");
+//			else if (line.contains("%60")) {
+//				line = line.replaceAll("%60", "`");
+//			}
+		}
+		return line;
 	}
 
 	public void extractArticlesProcessed(String reportDirectory) {

@@ -1,0 +1,151 @@
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Manuel_\"Flaco\"_Ib??ez?dbpv
+# # <BAD URI: Illegal character in path at index 56: http://simple.dbpedia.org/resource/Twelve_Variations_on_\"Ah_vous_dirai-je,_Maman\"?dbpv
+# <BAD URI: Illegal character in path at index 64: http://simple.dbpedia.org/resource/Reagan's_Neshoba_County_Fair_\"states'_rights\"_speech?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/George_\"Harmonica\"_Smith?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/George_\"Harmonica\"_Smith?dbpv
+# <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/\"Crocodile\"_Dundee?dbpv
+# <BAD URI: Illegal character in path at index 41: http://simple.dbpedia.org/resource/Tommy_\"Hurricane\"_Jackson?dbpv
+# <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/List_of_\"Weird_Al\"_Yankovic_polka_medleys?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Lee_\"Scratch\"_Perry?dbpv
+# # <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/John_\"Mule\"_Miles?dbpv
+# <BAD URI: Illegal character in path at index 53: http://simple.dbpedia.org/resource/Szczecin-Goleni?w_\"Solidarno??\"_Airport?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Ian_\"H\"_Watkins?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Lee_\"Scratch\"_Perry?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._5_\"Fate\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Path?tique\"_(Tchaikovsky)?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._5_\"Fate\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._9_\"Choral\"_(Beethoven)?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Edward_\"Tug\"_Wilson?dbpv
+# # <BAD URI: Illegal character in path at index 64: http://simple.dbpedia.org/resource/Reagan's_Neshoba_County_Fair_\"states'_rights\"_speech?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Ian_\"H\"_Watkins?dbpv
+# <BAD URI: Illegal character in path at index 49: http://simple.dbpedia.org/resource/Symphony_No.8_\"Symphony_of_a_Thousand\"_(Mahler)?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Arthur_\"Guitar_Boogie\"_Smith?dbpv
+# # <BAD URI: Illegal character in path at index 49: http://simple.dbpedia.org/resource/Symphony_No.8_\"Symphony_of_a_Thousand\"_(Mahler)?dbpv
+# <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._94_\"Surprise\"_(Haydn)?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._7_\"Leningrad\"_(Shostakovich)?dbpv
+# # <BAD URI: Illegal character in path at index 44: http://simple.dbpedia.org/resource/Nirbhaya_\"Fearless\"?dbpv
+# <BAD URI: Illegal character in path at index 56: http://simple.dbpedia.org/resource/Twelve_Variations_on_\"Ah_vous_dirai-je,_Maman\"?dbpv
+# # <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Like_a_Surgeon_(\"Weird_Al\"_Yankovic_song)?dbpv
+# # <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._94_\"Surprise\"_(Haydn)?dbpv
+# <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Toys_\"R\"_Us?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Per_\"Dead\"_Ohlin?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._3_\"Eroica\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 41: http://simple.dbpedia.org/resource/Tommy_\"Hurricane\"_Jackson?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Pastorale\"_(Beethoven)?dbpv
+# <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Alfredo_\"Chocolate\"_Armenteros?dbpv
+# # <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/`Abdu'l-Bah??dbpv
+# <BAD URI: Illegal character in path at index 48: http://simple.dbpedia.org/resource/Campaign_for_\"santorum\"_neologism?dbpv
+# # <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/List_of_\"Weird_Al\"_Yankovic_polka_medleys?dbpv
+# # <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._41_\"Jupiter\"_(Mozart)?dbpv
+# <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Shafi`i?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Pastorale\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 53: http://simple.dbpedia.org/resource/Szczecin-Goleni?w_\"Solidarno??\"_Airport?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Path?tique\"_(Tchaikovsky)?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/4'33\"?dbpv
+# <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._41_\"Jupiter\"_(Mozart)?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Manuel_\"Flaco\"_Ib??ez?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/4'33\"?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._1_\"Spring\"_(Schumann)?dbpv
+# completed 2017-03-02T15:34:16Z
+# # <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Alfredo_\"Chocolate\"_Armenteros?dbpv
+# <BAD URI: Illegal character in path at index 44: http://simple.dbpedia.org/resource/Nirbhaya_\"Fearless\"?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._1_\"Spring\"_(Schumann)?dbpv
+# <BAD URI: Illegal character in path at index 46: http://simple.dbpedia.org/resource/Music_from_\"The_Elder\"?dbpv
+# # <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Shafi`i?dbpv
+# <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Maurice_\"Rocket\"_Richard_Trophy?dbpv
+# <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Like_a_Surgeon_(\"Weird_Al\"_Yankovic_song)?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._4_\"Italian\"_(Mendelssohn)?dbpv
+# <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/`Abdu'l-Bah??dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._7_\"Leningrad\"_(Shostakovich)?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Edward_\"Tug\"_Wilson?dbpv
+# # <BAD URI: Illegal character in path at index 48: http://simple.dbpedia.org/resource/Campaign_for_\"santorum\"_neologism?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._4_\"Italian\"_(Mendelssohn)?dbpv
+# # <BAD URI: Illegal character in path at index 57: http://simple.dbpedia.org/resource/Canonic_Variations_on_\"Vom_Himmel_hoch_da_komm'_ich_her\"?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Arthur_\"Guitar_Boogie\"_Smith?dbpv
+# <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/John_\"Mule\"_Miles?dbpv
+# # <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/\"Crocodile\"_Dundee?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Johnny_\"Guitar\"_Watson?dbpv
+# # <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Toys_\"R\"_Us?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Johnny_\"Guitar\"_Watson?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._3_\"Eroica\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Maurice_\"Rocket\"_Richard_Trophy?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._9_\"Choral\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 46: http://simple.dbpedia.org/resource/Music_from_\"The_Elder\"?dbpv
+# <BAD URI: Illegal character in path at index 57: http://simple.dbpedia.org/resource/Canonic_Variations_on_\"Vom_Himmel_hoch_da_komm'_ich_her\"?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Per_\"Dead\"_Ohlin?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Manuel_\"Flaco\"_Ib??ez?dbpv
+# # <BAD URI: Illegal character in path at index 56: http://simple.dbpedia.org/resource/Twelve_Variations_on_\"Ah_vous_dirai-je,_Maman\"?dbpv
+# <BAD URI: Illegal character in path at index 64: http://simple.dbpedia.org/resource/Reagan's_Neshoba_County_Fair_\"states'_rights\"_speech?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/George_\"Harmonica\"_Smith?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/George_\"Harmonica\"_Smith?dbpv
+# <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/\"Crocodile\"_Dundee?dbpv
+# <BAD URI: Illegal character in path at index 41: http://simple.dbpedia.org/resource/Tommy_\"Hurricane\"_Jackson?dbpv
+# started 2017-03-02T14:26:05Z
+# <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/List_of_\"Weird_Al\"_Yankovic_polka_medleys?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Lee_\"Scratch\"_Perry?dbpv
+# # <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/John_\"Mule\"_Miles?dbpv
+# <BAD URI: Illegal character in path at index 53: http://simple.dbpedia.org/resource/Szczecin-Goleni?w_\"Solidarno??\"_Airport?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Ian_\"H\"_Watkins?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Lee_\"Scratch\"_Perry?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._5_\"Fate\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Path?tique\"_(Tchaikovsky)?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._5_\"Fate\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._9_\"Choral\"_(Beethoven)?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Edward_\"Tug\"_Wilson?dbpv
+# # <BAD URI: Illegal character in path at index 64: http://simple.dbpedia.org/resource/Reagan's_Neshoba_County_Fair_\"states'_rights\"_speech?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Ian_\"H\"_Watkins?dbpv
+# <BAD URI: Illegal character in path at index 49: http://simple.dbpedia.org/resource/Symphony_No.8_\"Symphony_of_a_Thousand\"_(Mahler)?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Arthur_\"Guitar_Boogie\"_Smith?dbpv
+# # <BAD URI: Illegal character in path at index 49: http://simple.dbpedia.org/resource/Symphony_No.8_\"Symphony_of_a_Thousand\"_(Mahler)?dbpv
+# <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._94_\"Surprise\"_(Haydn)?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._7_\"Leningrad\"_(Shostakovich)?dbpv
+# # <BAD URI: Illegal character in path at index 44: http://simple.dbpedia.org/resource/Nirbhaya_\"Fearless\"?dbpv
+# <BAD URI: Illegal character in path at index 56: http://simple.dbpedia.org/resource/Twelve_Variations_on_\"Ah_vous_dirai-je,_Maman\"?dbpv
+# # <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Like_a_Surgeon_(\"Weird_Al\"_Yankovic_song)?dbpv
+# # <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._94_\"Surprise\"_(Haydn)?dbpv
+# <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Toys_\"R\"_Us?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Per_\"Dead\"_Ohlin?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._3_\"Eroica\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 41: http://simple.dbpedia.org/resource/Tommy_\"Hurricane\"_Jackson?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Pastorale\"_(Beethoven)?dbpv
+# <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Alfredo_\"Chocolate\"_Armenteros?dbpv
+# # <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/`Abdu'l-Bah??dbpv
+# <BAD URI: Illegal character in path at index 48: http://simple.dbpedia.org/resource/Campaign_for_\"santorum\"_neologism?dbpv
+# # <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/List_of_\"Weird_Al\"_Yankovic_polka_medleys?dbpv
+# # <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._41_\"Jupiter\"_(Mozart)?dbpv
+# <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Shafi`i?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Pastorale\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 53: http://simple.dbpedia.org/resource/Szczecin-Goleni?w_\"Solidarno??\"_Airport?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._6_\"Path?tique\"_(Tchaikovsky)?dbpv
+# # <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/4'33\"?dbpv
+# <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Symphony_No._41_\"Jupiter\"_(Mozart)?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Manuel_\"Flaco\"_Ib??ez?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/4'33\"?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._1_\"Spring\"_(Schumann)?dbpv
+# completed 2017-03-02T15:34:16Z
+# # <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Alfredo_\"Chocolate\"_Armenteros?dbpv
+# <BAD URI: Illegal character in path at index 44: http://simple.dbpedia.org/resource/Nirbhaya_\"Fearless\"?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._1_\"Spring\"_(Schumann)?dbpv
+# <BAD URI: Illegal character in path at index 46: http://simple.dbpedia.org/resource/Music_from_\"The_Elder\"?dbpv
+# # <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Shafi`i?dbpv
+# <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Maurice_\"Rocket\"_Richard_Trophy?dbpv
+# <BAD URI: Illegal character in path at index 51: http://simple.dbpedia.org/resource/Like_a_Surgeon_(\"Weird_Al\"_Yankovic_song)?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._4_\"Italian\"_(Mendelssohn)?dbpv
+# <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/`Abdu'l-Bah??dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._7_\"Leningrad\"_(Shostakovich)?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Edward_\"Tug\"_Wilson?dbpv
+# # <BAD URI: Illegal character in path at index 48: http://simple.dbpedia.org/resource/Campaign_for_\"santorum\"_neologism?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._4_\"Italian\"_(Mendelssohn)?dbpv
+# # <BAD URI: Illegal character in path at index 57: http://simple.dbpedia.org/resource/Canonic_Variations_on_\"Vom_Himmel_hoch_da_komm'_ich_her\"?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Arthur_\"Guitar_Boogie\"_Smith?dbpv
+# <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/John_\"Mule\"_Miles?dbpv
+# # <BAD URI: Illegal character in path at index 35: http://simple.dbpedia.org/resource/\"Crocodile\"_Dundee?dbpv
+# <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Johnny_\"Guitar\"_Watson?dbpv
+# # <BAD URI: Illegal character in path at index 40: http://simple.dbpedia.org/resource/Toys_\"R\"_Us?dbpv
+# # <BAD URI: Illegal character in path at index 42: http://simple.dbpedia.org/resource/Johnny_\"Guitar\"_Watson?dbpv
+# # <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._3_\"Eroica\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 43: http://simple.dbpedia.org/resource/Maurice_\"Rocket\"_Richard_Trophy?dbpv
+# <BAD URI: Illegal character in path at index 50: http://simple.dbpedia.org/resource/Symphony_No._9_\"Choral\"_(Beethoven)?dbpv
+# # <BAD URI: Illegal character in path at index 46: http://simple.dbpedia.org/resource/Music_from_\"The_Elder\"?dbpv
+# <BAD URI: Illegal character in path at index 57: http://simple.dbpedia.org/resource/Canonic_Variations_on_\"Vom_Himmel_hoch_da_komm'_ich_her\"?dbpv
+# <BAD URI: Illegal character in path at index 39: http://simple.dbpedia.org/resource/Per_\"Dead\"_Ohlin?dbpv

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -88,6 +89,7 @@ public class LOD {
 		OutputStream os = Files.newOutputStream(Paths.get(outputPath));
 		BufferedOutputStream bos = new BufferedOutputStream(os);
 		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
+		PrintWriter pw = new PrintWriter(outputStream, true);
 		File path = new File(filePath);
 		if(path.exists()){
 			model.read(filePath,"NTRIPLES");
@@ -99,7 +101,7 @@ public class LOD {
 			model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
 			model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema# ");
 			
-			model.write(outputStream, "TURTLE");
+			model.write(pw, "TURTLE");
 			outputStream.close();
 			model.close();
 		}else{

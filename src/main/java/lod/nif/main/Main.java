@@ -217,6 +217,7 @@ public class Main {
 	public void createTempFiles(int begin, int end, List<String> list,
 			BufferedReader br, String outputFolder, String sender,
 			String originalUri) throws IOException, DecoderException {
+		int globalLines = 0;
 		if (end > list.size())
 			end = list.size();
 		logger.info("Sender = " + sender);
@@ -232,6 +233,7 @@ public class Main {
 				writeTempFileLine(outputFolder, sender, originalUri);
 				String indexArticle = sender + " - " + i;
 				String numTriples = sender + " - " + lines.size();
+				globalLines += lines.size(); 
 				if (mapArticleCounter.containsKey(article)) {
 					mapArticleCounter.get(article).update(indexArticle,
 							numTriples);
@@ -243,6 +245,7 @@ public class Main {
 				}
 			}
 		}
+		logger.info("\t global numTriples returned = " + globalLines);
 	}
 
 	public String extractArticleLines(BufferedReader br, List<String> lines,

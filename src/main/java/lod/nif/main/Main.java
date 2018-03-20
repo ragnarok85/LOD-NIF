@@ -97,6 +97,10 @@ public class Main {
 		String articlesData = "";
 		int numArticlesToProcess = 1000;
 		int contextListSize = contextList.size();
+		
+		logger.info("Num lines of context list = " + contextList.size()
+				+ "Num lines of page list = " + pageList.size()
+				+ "Num lines of link list = " + linksList.size());
 
 		logger.info("Replacement");
 		for (int i = numArticlesToProcess, j = 0; i < contextList.size();) {
@@ -123,7 +127,7 @@ public class Main {
 					.entrySet()) {
 				Report report = entry.getValue();
 				if (report.getTimesProcessed() == 3) {
-					logger.info("outputName = " + report.getOutputName());
+//					logger.info("outputName = " + report.getOutputName());
 					report.setOutputBz2(lod.lodFile(report.getArticle(),
 							outputFolder + "/" + report.getOutputName(),
 							outputLod));
@@ -147,13 +151,16 @@ public class Main {
 //					reportData += report.toString() + "\n";
 //				}
 			}
-
+			
+			logger.info("Files written as LOD = " + removeList.size());
+			
 			for (String r : removeList) {
 				File file = new File(outputFolder + "/"
 						+ main.mapArticleCounter.get(r).getOutputName());
 				file.delete();
 				main.mapArticleCounter.remove(r);
 			}
+			logger.info("Remaining articles = " + main.mapArticleCounter.size());
 			// System.out.println("Remaining files: ");
 			// for(Map.Entry<String, Report> entry :
 			// main.mapArticleCounter.entrySet()){
@@ -218,17 +225,23 @@ public class Main {
 			BufferedReader br, String outputFolder, String sender,
 			String originalUri) throws IOException, DecoderException {
 		int globalLines = 0;
+		int articlesProcessed = 0;
 		if (end > list.size())
 			end = list.size();
-		logger.info("Sender = " + sender);
+		logger.info("Sender = " + sender + "(" + begin + " - " + end + ")");
 		for (int i = begin; i < end; i++) {
 			String article = "";
 			List<String> lines = new ArrayList<String>();
+//			logger.info("\tlast = " + last);
 			article = extractArticleLines(br, lines, originalUri);
 			setArticles.add(article);
 			if (lines.size() > 0) {
+				articlesProcessed++;
+				//printLines(lines);
 				setArticles.add(sender + "999999" + article);
-				String outputName = generateName(lines.get(0), originalUri);
+				//String outputName = generateName(lines.get(0), originalUri);
+				String outputName = generateName(lines.get(0), replaceUri);
+//				logger.info("outputName several Lines = " + outputName);
 				writeTempFile(outputFolder + "/" + outputName, lines);
 				writeTempFileLine(outputFolder, sender, originalUri);
 				String indexArticle = sender + " - " + i;
@@ -243,9 +256,14 @@ public class Main {
 							numTriples);
 					mapArticleCounter.put(article, report);
 				}
+			}else {
+				logger.info("\tarticle = " + article + " num lines = " + lines.size());
+				logger.info("\tlast = " + last);
 			}
 		}
 		logger.info("\t global numTriples returned = " + globalLines);
+		logger.info("\t articles processed = " + articlesProcessed);
+		logger.info("\t number of articles pending... " + mapArticleCounter.size());
 	}
 
 	public String extractArticleLines(BufferedReader br, List<String> lines,
@@ -257,17 +275,18 @@ public class Main {
 		} else {
 			article = cleanLine(last.split("\\?dbpv")[0]);
 		}
+		
 		while ((line = br.readLine()) != null) {
 
-			if (!line.startsWith("<http://")) {
+			if (!line.startsWith("<")) {
 				continue;
 			}
 			line = cleanLine(line);
-			if(replacement){
-				line = line.replace(originalUri, replaceUri);
-			}
 
 			if (line.contains(article + "?dbpv")) {// dbpv=2016-10
+				if(replacement){
+					line = line.replace(originalUri, replaceUri);
+				}
 				lines.add(line);
 			} else {
 				last = line;
@@ -310,12 +329,12 @@ public class Main {
 		writeReport(reportDirectory, "context", context);
 	}
 
-	public String generateName(String uri, String originalUri) {
-		if(replacement)
-			originalUri = replaceUri;
+	public String generateName(String uri, String newUri) {
+//		if(replacement)
+//			originalUri = replaceUri;
 		uri = uri.split("\\?")[0];
 		// uri = uri.replace("<http://simple.dbpedia.org/resource/", "");
-		uri = uri.replace(originalUri, "");
+		uri = uri.replace(newUri, "");
 		uri = uri.split("\\?")[0].replace("/", "_____");
 		return uri;
 	}
@@ -331,6 +350,12 @@ public class Main {
 					+ "\n";
 		}
 		return data;
+	}
+	
+	public void printLines(List<String> lines) {
+		for(String line : lines) {
+			System.out.println(line);
+		}
 	}
 
 	public void writeReport(String reportDirectory, String reportName,
@@ -365,14 +390,17 @@ public class Main {
 
 	public void writeTempFileLine(String output, String sender,
 			String originalUri) {
-		if(replacement)
-			originalUri = replaceUri;
+//		if(replacement)
+//			originalUri = replaceUri;
 		String outputName = generateName(last, originalUri);
 		// String o = output+"/"+sender + "/"+outputName;
 		String o = output + "/" + outputName;
+//		slogger.info("outputName one Line = " + outputName);
 		try (PrintWriter pw = new PrintWriter(new OutputStreamWriter(
 				new FileOutputStream(o, true), StandardCharsets.UTF_8))) {
-			pw.write(last + "\n");
+			String lineToWrite = last.replace(originalUri, replaceUri);
+//			pw.write(last + "\n");
+			pw.write(lineToWrite + "\n");
 			last = "";
 			pw.close();
 		} catch (IOException e) {

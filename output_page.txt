@@ -3,5 +3,5 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	at java.lang.String.<init>(String.java:207)
 	at java.io.BufferedReader.readLine(BufferedReader.java:356)
 	at java.io.BufferedReader.readLine(BufferedReader.java:389)
-	at lod.nif.main.Main.readListFromFile(Main.java:148)
-	at lod.nif.main.Main.main(Main.java:74)
+	at lod.nif.main.Main.readListFromFile(Main.java:201)
+	at lod.nif.main.Main.main(Main.java:93)

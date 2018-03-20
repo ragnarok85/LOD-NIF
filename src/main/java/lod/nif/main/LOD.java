@@ -91,7 +91,8 @@ public class LOD {
 		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
 		PrintWriter pw = new PrintWriter(outputStream, true);
 		File path = new File(filePath);
-		if(path.exists()){
+		
+		if(path.exists() && path.isFile()){
 			model.read(filePath,"NTRIPLES");
 			
 			model.setNsPrefix("nif", "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#");

@@ -26,8 +26,7 @@ import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.log4j.Logger;
 
-public class Main {
-
+public class Main2 {
 	static final Logger logger = Logger.getLogger(Main.class);
 
 	/*
@@ -41,32 +40,15 @@ public class Main {
 	 * args[10] - original URI e.g. <http://dbpedia.org/resource/
 	 */
 
-	//<http://dbpedia.org/resource/
-	//<http://simple.dbpedia.org/resource/
-	String lastContextLine = "";
-	String lastPageLine = "";
-	String lastLinksLine = "";
+	String replaceUri = "";
 	String last = "";
-	int counter = 0;
-	Map<String, Report> mapArticleCounter = new HashMap<String, Report>();
-
-	List<String> notInLinksList;
-	private String replaceUri = "";
-	private boolean replacement = false;
+	boolean replacement = false;
 	public static void main(String... args) throws CompressorException,
 			IOException, NoSuchAlgorithmException, DecoderException {
-		// BasicConfigurator.configure(); // Logger was not working
-		Main main = new Main();
+		Main2 main = new Main2();
 		long initialTime = System.currentTimeMillis();
-		File pathContextList = new File(args[0]);
-		File pathPageList = new File(args[1]);
-		File pathLinksList = new File(args[2]);
-		File pathNotInLinksList = new File(args[3]);
-		String pathContextBZ2 = args[4];
-		String pathPageBZ2 = args[5];
-		String pathLinksBZ2 = args[6];
-		String outputFolder = args[7];
-		String outputLod = args[8];
+		String pathBZ2 = args[4];
+		String outputFolder = args[8];
 		String outputReports = args[9];
 
 		String originalUri = args[10];
@@ -81,80 +63,17 @@ public class Main {
 		}
 
 		// System.out.println("Creating BufferedReader from BZ2 files");
-		BufferedReader brContext = main
-				.getBufferedReaderForCompressedFile(pathContextBZ2);
-		BufferedReader brPage = main
-				.getBufferedReaderForCompressedFile(pathPageBZ2);
-		BufferedReader brLinks = main
-				.getBufferedReaderForCompressedFile(pathLinksBZ2);
+		BufferedReader br = main
+				.getBufferedReaderForCompressedFile(pathBZ2);
 
 		// System.out.println("Loading the list of articles from context, page and link");
-		List<String> contextList = main.readListFromFile(pathContextList);
-		List<String> pageList = main.readListFromFile(pathPageList);
-		List<String> linksList = main.readListFromFile(pathLinksList);
-		main.notInLinksList = main.readListFromFile(pathNotInLinksList);
 		String reportData = "";
 		String articlesData = "";
-		int numArticlesToProcess = 1000;
-		int contextListSize = contextList.size();
-		
-		logger.info("Num lines of context list = " + contextList.size()
-				+ "Num lines of page list = " + pageList.size()
-				+ "Num lines of link list = " + linksList.size());
 
-		logger.info("Replacement");
-		for (int i = numArticlesToProcess, j = 0; i < contextList.size();) {
-			logger.info("begin = " + j + "-- End = " + i + " of -- "
-					+ contextListSize);
 
-			logger.info("Extracting triples from page");
-			main.createTempFiles(j, i, pageList, brPage, outputFolder, "page",
-					originalUri);
+			logger.info("Extracting triples");
+			main.createTempFiles(br, outputFolder, originalUri);
 
-			logger.info("Extracting triples from context");
-			main.createTempFiles(j, i, contextList, brContext, outputFolder,
-					"context", originalUri);
-
-			logger.info("Extracting triples from link");
-			main.createTempFiles(j, i, linksList, brLinks, outputFolder,
-					"link", originalUri);
-
-			articlesData = main.printMapArticles();
-
-			LOD lod = new LOD();
-			List<String> removeList = new ArrayList<String>();
-			for (Map.Entry<String, Report> entry : main.mapArticleCounter
-					.entrySet()) {
-				Report report = entry.getValue();
-				if (report.getTimesProcessed() == 3) {
-					report.setOutputBz2(lod.lodFile(report.getArticle(),
-							outputFolder + "/" + report.getOutputName(),
-							outputLod));
-					removeList.add(entry.getKey());
-					reportData += report.toString() + "\n";
-				}
-			}
-			
-			logger.info("Files written as LOD = " + removeList.size());
-			
-			for (String r : removeList) {
-				File file = new File(outputFolder + "/"
-						+ main.mapArticleCounter.get(r).getOutputName());
-				file.delete();
-				main.mapArticleCounter.remove(r);
-			}
-			logger.info("Remaining articles = " + main.mapArticleCounter.size());
-
-			j = i;
-
-			if (i == contextList.size() - 1)
-				break;
-			else
-				i += numArticlesToProcess;
-			if (i > contextList.size()) {
-				i = contextList.size() - 1;
-			}
-		}
 
 		long endTime = System.currentTimeMillis() - initialTime;
 		String timeElapsed = String.format(
@@ -199,63 +118,41 @@ public class Main {
 	Set<String> setArticles = new HashSet<String>();
 	int brCounter = 0;
 
-	public void createTempFiles(int begin, int end, List<String> list,
-			BufferedReader br, String outputFolder, String sender,
+	public void createTempFiles(BufferedReader br, String outputFolder,
 			String originalUri) throws IOException, DecoderException {
-		int globalLines = 0;
-		int articlesProcessed = 0;
-		if (end > list.size())
-			end = list.size();
-		logger.info("Sender = " + sender + "(" + begin + " - " + end + ")");
-		for (int i = begin; i < end; i++) {
+		boolean fin = false;
+		while(!fin){
 			String article = "";
 			List<String> lines = new ArrayList<String>();
 //			logger.info("\tlast = " + last);
-			article = extractArticleLines(br, lines, originalUri);
-			setArticles.add(article);
+			fin = extractArticleLines(br, lines, originalUri);
 			if (lines.size() > 0) {
-				articlesProcessed++;
-				//printLines(lines);
-				setArticles.add(sender + "999999" + article);
+				setArticles.add(article);
 				//String outputName = generateName(lines.get(0), originalUri);
 				String outputName = generateName(lines.get(0), replaceUri);
-//				logger.info("outputName several Lines = " + outputName);
 				writeTempFile(outputFolder + "/" + outputName, lines);
-				writeTempFileLine(outputFolder, sender, originalUri);
-				String indexArticle = sender + " - " + i;
-				String numTriples = sender + " - " + lines.size();
-				globalLines += lines.size(); 
-				if (mapArticleCounter.containsKey(article)) {
-					mapArticleCounter.get(article).update(indexArticle,
-							numTriples);
-				} else {
-					Report report = new Report(article, outputName,
-							notInLinksList.contains(article), indexArticle,
-							numTriples);
-					mapArticleCounter.put(article, report);
-				}
+				writeTempFileLine(outputFolder, originalUri);
 			}else {
 				logger.info("\tarticle = " + article + " num lines = " + lines.size());
 				logger.info("\tlast = " + last);
 			}
 		}
-		logger.info("\t global numTriples returned = " + globalLines);
-		logger.info("\t articles processed = " + articlesProcessed);
-		logger.info("\t number of articles pending... " + mapArticleCounter.size());
 	}
 
-	public String extractArticleLines(BufferedReader br, List<String> lines,
+	public boolean extractArticleLines(BufferedReader br, List<String> lines,
 			String originalUri) throws IOException, DecoderException {
 		String line = "";
 		String article;
+		boolean fin = false;
 		if (last.length() == 0 && (line = br.readLine()) != null) {
 			article = cleanLine(line.split("\\?dbpv")[0]);
 		} else {
 			article = cleanLine(last.split("\\?dbpv")[0]);
 		}
 		
-		while ((line = br.readLine()) != null) {
-
+		while (true) {
+			if((line = br.readLine()) == null)
+				fin = true;
 			if (!line.startsWith("<")) {
 				continue;
 			}
@@ -271,7 +168,8 @@ public class Main {
 				break;
 			}
 		}
-		return article;
+		
+		return fin;
 	}
 	
 	public String cleanLine(String line) throws IOException, DecoderException {
@@ -317,19 +215,6 @@ public class Main {
 		return uri;
 	}
 
-	public String printMapArticles() {
-		String data = "";
-		for (Map.Entry<String, Report> entry : mapArticleCounter.entrySet()) {
-			// System.out.println(counter++ + "--"
-			// +entry.getValue().getTimesProcessed() + " ----- " +
-			// entry.getValue().isInLink() + " ----- " +entry.getKey());
-			data += entry.getValue().getTimesProcessed() + "\t"
-					+ entry.getValue().isInLink() + "\t" + entry.getKey()
-					+ "\n";
-		}
-		return data;
-	}
-	
 	public void printLines(List<String> lines) {
 		for(String line : lines) {
 			System.out.println(line);
@@ -348,6 +233,7 @@ public class Main {
 		}
 	}
 
+	int counter = 0;
 	public void writeTempFile(String output, List<String> lines) {
 		File file = new File(output);
 		if (!file.exists()) {
@@ -366,18 +252,12 @@ public class Main {
 		}
 	}
 
-	public void writeTempFileLine(String output, String sender,
-			String originalUri) {
-//		if(replacement)
-//			originalUri = replaceUri;
+	public void writeTempFileLine(String output, String originalUri) {
 		String outputName = generateName(last, originalUri);
-		// String o = output+"/"+sender + "/"+outputName;
 		String o = output + "/" + outputName;
-//		slogger.info("outputName one Line = " + outputName);
 		try (PrintWriter pw = new PrintWriter(new OutputStreamWriter(
 				new FileOutputStream(o, true), StandardCharsets.UTF_8))) {
 			String lineToWrite = last.replace(originalUri, replaceUri);
-//			pw.write(last + "\n");
 			pw.write(lineToWrite + "\n");
 			last = "";
 			pw.close();

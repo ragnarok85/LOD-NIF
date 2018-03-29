@@ -100,7 +100,7 @@ public class LOD {
 			model.setNsPrefix("skos", "http://www.w3.org/2004/02/skos/core#");
 			model.setNsPrefix("itsrdf", "http://www.w3.org/2005/11/its/rdf#");
 			model.setNsPrefix("xsd", "http://www.w3.org/2001/XMLSchema#");
-			model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema# ");
+			model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
 			
 			model.write(pw, "TURTLE");
 			outputStream.close();

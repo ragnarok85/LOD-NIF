@@ -136,11 +136,11 @@ public class Main2 {
 		String article;
 		boolean fin = false;
 		if (last.length() == 0 && (line = br.readLine()) != null) {
-			article = cleanLine(line.split("\\?dbpv")[0]);
+			article = line.split("\\?dbpv")[0];
 
 		} else {
 			line = last;
-			article = cleanLine(last.split("\\?dbpv")[0]);
+			article = last.split("\\?dbpv")[0];
 		}
 
 		while (true) {
@@ -154,8 +154,6 @@ public class Main2 {
 				line = br.readLine();
 				continue;
 			}
-			line = cleanLine(line);
-
 			if (line.contains(article + "?dbpv")) {// dbpv=2016-10
 				if (replacement) {
 					line = line.replace(originalUri, replaceUri);
@@ -174,23 +172,9 @@ public class Main2 {
 		return fin;
 	}
 
-	public String cleanLine(String line) throws IOException, DecoderException {
-		if (line.contains("%")) {
-			if (line.contains("%3F"))
-				line = line.replaceAll("%3F", "?");
-			// else if (line.contains("%22"))
-			// line = line.replaceAll("%22", "\"");
-			// else if (line.contains("%60")) {
-			// line = line.replaceAll("%60", "`");
-			// }
-		}
-		return line;
-	}
 
 	public void extractArticlesProcessed(String reportDirectory, String reportName) {
-		String link = "";
 		String context = "";
-		String page = "";
 		for (String a : setArticles) {
 				context += a + "\n";
 		}
@@ -198,10 +182,7 @@ public class Main2 {
 	}
 
 	public String generateName(String uri, String newUri) {
-		// if(replacement)
-		// originalUri = replaceUri;
 		uri = uri.split("\\?")[0];
-		// uri = uri.replace("<http://simple.dbpedia.org/resource/", "");
 		uri = uri.replace(newUri, "");
 		uri = uri.split("\\?")[0].replace("/", "_____");
 		return uri;

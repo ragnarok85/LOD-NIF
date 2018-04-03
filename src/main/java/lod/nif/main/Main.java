@@ -25,6 +25,7 @@ import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.log4j.Logger;
+import org.rdfhdt.hdt.exceptions.ParserException;
 
 public class Main {
 
@@ -54,7 +55,7 @@ public class Main {
 	private String replaceUri = "";
 	private boolean replacement = false;
 	public static void main(String... args) throws CompressorException,
-			IOException, NoSuchAlgorithmException, DecoderException {
+			IOException, NoSuchAlgorithmException, DecoderException, ParserException {
 		// BasicConfigurator.configure(); // Logger was not working
 		Main main = new Main();
 		long initialTime = System.currentTimeMillis();
@@ -68,6 +69,8 @@ public class Main {
 		String outputFolder = args[7];
 		String outputLod = args[8];
 		String outputReports = args[9];
+//		String hdtOutput = args[12];
+//		String baseURI = args[13];
 
 		String originalUri = args[10];
 
@@ -130,6 +133,9 @@ public class Main {
 					report.setOutputBz2(lod.lodFile(report.getArticle(),
 							outputFolder + "/" + report.getOutputName(),
 							outputLod));
+//					lod.parseFileHDT(hdtOutput,
+//							outputFolder + "/" + report.getOutputName(),
+//							baseURI);
 					removeList.add(entry.getKey());
 					reportData += report.toString() + "\n";
 				}
@@ -202,11 +208,15 @@ public class Main {
 	public void createTempFiles(int begin, int end, List<String> list,
 			BufferedReader br, String outputFolder, String sender,
 			String originalUri) throws IOException, DecoderException {
+		
 		int globalLines = 0;
 		int articlesProcessed = 0;
+		
 		if (end > list.size())
 			end = list.size();
+		
 		logger.info("Sender = " + sender + "(" + begin + " - " + end + ")");
+		
 		for (int i = begin; i < end; i++) {
 			String article = "";
 			List<String> lines = new ArrayList<String>();
@@ -368,16 +378,11 @@ public class Main {
 
 	public void writeTempFileLine(String output, String sender,
 			String originalUri) {
-//		if(replacement)
-//			originalUri = replaceUri;
 		String outputName = generateName(last, originalUri);
-		// String o = output+"/"+sender + "/"+outputName;
 		String o = output + "/" + outputName;
-//		slogger.info("outputName one Line = " + outputName);
 		try (PrintWriter pw = new PrintWriter(new OutputStreamWriter(
 				new FileOutputStream(o, true), StandardCharsets.UTF_8))) {
 			String lineToWrite = last.replace(originalUri, replaceUri);
-//			pw.write(last + "\n");
 			pw.write(lineToWrite + "\n");
 			last = "";
 			pw.close();

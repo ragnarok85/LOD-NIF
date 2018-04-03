@@ -11,14 +11,17 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream;
+import org.apache.commons.io.FileUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.util.FileManager;
+import org.rdfhdt.hdt.exceptions.ParserException;
 
 public class LOD {
 	/*
@@ -46,17 +49,21 @@ public class LOD {
 	public String lodFile(String article, String pathArticle, String output) throws NoSuchAlgorithmException, IOException{
 //		System.out.println("pathArticle = "+pathArticle);
 		String outputPath = createOutputPath(article, output);
-		parseFile(outputPath+".ttl.bz2", pathArticle);
-		
+//		parseFile(outputPath+".ttl.bz2", pathArticle);
+		parseFileGZ(outputPath+".ttl.bz2", pathArticle);
 		return outputPath+".ttl.bz2";
 	}
+	
+	public void hdtFile(String baseURI, String pathArticle, String hdtOutput) throws NoSuchAlgorithmException, IOException, ParserException{
+		parseFileHDT(hdtOutput, pathArticle, baseURI);
+	}		
 	
 	public String createOutputPath(String name, String output) throws NoSuchAlgorithmException{
 		String md5Name = md5(name);
 		String path = createDirectoryStructure(md5Name, output);
 		String fileName = extractFileName(md5Name);
 		
-		System.out.println(md5Name + "\n" + path + "\n" + fileName + "\n");
+//		System.out.println(md5Name + "\n" + path + "\n" + fileName + "\n");
 		return  path + "/" + fileName;
 	}
 	
@@ -80,6 +87,18 @@ public class LOD {
 	
 	public String extractFileName(String md5Name){
 		return md5Name.substring(4);
+	}
+	
+	public void parseFileGZ(String outputPath, String filePath) throws IOException{
+		List<String> lines = FileUtils.readLines(new File(filePath));
+		OutputStream os = Files.newOutputStream(Paths.get(outputPath));
+		BufferedOutputStream bos = new BufferedOutputStream(os);
+		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
+		PrintWriter pw = new PrintWriter(outputStream, true);
+		for(String line : lines){
+			pw.write(line + "\n");
+		}
+		pw.close();
 	}
 	
 	public void parseFile(String outputPath, String filePath) throws IOException{
@@ -111,6 +130,20 @@ public class LOD {
 		
 //		File file = new File(filePath);
 //		file.delete();
+	}
+	
+	public void parseFileHDT(String hdtOutput, String filePath, String baseURI) throws IOException, ParserException{
+		Model model = ModelFactory.createDefaultModel();
+		
+		//BZip2CompressorInputStream inputStream = createBz2Reader(filePath);
+		File path = new File(filePath);
+		
+		if(path.exists() && path.isFile()){
+			model.read(filePath,"NTRIPLES");
+			HDTTest.createHDT(model, hdtOutput, baseURI);
+			model.close();
+		}else{
+		}
 	}
 	
 	public BZip2CompressorInputStream createBz2Reader(String source) {

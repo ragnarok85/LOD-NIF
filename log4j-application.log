@@ -1,0 +1,165 @@
+2018-04-04 11:20:47 INFO  Main:104 - Num lines of context list = 118626Num lines of page list = 118589Num lines of link list = 117083
+2018-04-04 11:20:47 INFO  Main:108 - Replacement
+2018-04-04 11:20:47 INFO  Main:110 - begin = 0-- End = 1000 of -- 118626
+2018-04-04 11:20:47 INFO  Main:113 - Extracting triples from page
+2018-04-04 11:20:47 INFO  Main:218 - Sender = page(0 - 1000)
+2018-04-04 11:20:47 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:20:47 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=section&char=0,1234> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+2018-04-04 11:20:47 INFO  Main:364 - 0-/Users/lti/Downloads/Simple_nif/tmp//Abbreviation
+2018-04-04 11:20:51 INFO  Main:252 - 	 global numTriples returned = 151437
+2018-04-04 11:20:51 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:20:51 INFO  Main:254 - 	 number of articles pending... 999
+2018-04-04 11:20:51 INFO  Main:117 - Extracting triples from context
+2018-04-04 11:20:51 INFO  Main:218 - Sender = context(0 - 1000)
+2018-04-04 11:20:51 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:20:51 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+2018-04-04 11:20:54 INFO  Main:252 - 	 global numTriples returned = 4000
+2018-04-04 11:20:54 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:20:54 INFO  Main:254 - 	 number of articles pending... 1002
+2018-04-04 11:20:54 INFO  Main:121 - Extracting triples from link
+2018-04-04 11:20:54 INFO  Main:218 - Sender = link(0 - 1000)
+2018-04-04 11:20:54 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:20:54 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=phrase&char=122,138> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Phrase> .
+2018-04-04 11:21:06 INFO  Main:252 - 	 global numTriples returned = 389296
+2018-04-04 11:21:06 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:21:06 INFO  Main:254 - 	 number of articles pending... 1003
+2018-04-04 11:21:51 INFO  Main:104 - Num lines of context list = 118626Num lines of page list = 118589Num lines of link list = 117083
+2018-04-04 11:21:51 INFO  Main:108 - Replacement
+2018-04-04 11:21:51 INFO  Main:110 - begin = 0-- End = 1000 of -- 118626
+2018-04-04 11:21:51 INFO  Main:113 - Extracting triples from page
+2018-04-04 11:21:51 INFO  Main:218 - Sender = page(0 - 1000)
+2018-04-04 11:21:51 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:21:51 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=section&char=0,1234> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+2018-04-04 11:22:10 INFO  Main:252 - 	 global numTriples returned = 151437
+2018-04-04 11:22:10 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:22:10 INFO  Main:254 - 	 number of articles pending... 999
+2018-04-04 11:22:10 INFO  Main:117 - Extracting triples from context
+2018-04-04 11:22:10 INFO  Main:218 - Sender = context(0 - 1000)
+2018-04-04 11:22:10 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:22:10 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+2018-04-04 11:22:28 INFO  Main:252 - 	 global numTriples returned = 4000
+2018-04-04 11:22:28 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:22:28 INFO  Main:254 - 	 number of articles pending... 1002
+2018-04-04 11:22:28 INFO  Main:121 - Extracting triples from link
+2018-04-04 11:22:28 INFO  Main:218 - Sender = link(0 - 1000)
+2018-04-04 11:22:28 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:22:28 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=phrase&char=122,138> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Phrase> .
+2018-04-04 11:23:10 INFO  Main:252 - 	 global numTriples returned = 389296
+2018-04-04 11:23:10 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:23:10 INFO  Main:254 - 	 number of articles pending... 1003
+2018-04-04 11:24:31 INFO  Main:104 - Num lines of context list = 118626Num lines of page list = 118589Num lines of link list = 117083
+2018-04-04 11:24:32 INFO  Main:108 - Replacement
+2018-04-04 11:24:32 INFO  Main:110 - begin = 0-- End = 1000 of -- 118626
+2018-04-04 11:24:32 INFO  Main:113 - Extracting triples from page
+2018-04-04 11:24:32 INFO  Main:218 - Sender = page(0 - 1000)
+2018-04-04 11:24:32 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:24:32 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=section&char=0,1234> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+2018-04-04 11:24:47 INFO  Main:252 - 	 global numTriples returned = 151437
+2018-04-04 11:24:47 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:24:47 INFO  Main:254 - 	 number of articles pending... 999
+2018-04-04 11:24:47 INFO  Main:117 - Extracting triples from context
+2018-04-04 11:24:47 INFO  Main:218 - Sender = context(0 - 1000)
+2018-04-04 11:24:47 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:24:47 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+2018-04-04 11:24:54 INFO  Main:252 - 	 global numTriples returned = 4000
+2018-04-04 11:24:54 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:24:54 INFO  Main:254 - 	 number of articles pending... 1002
+2018-04-04 11:24:54 INFO  Main:121 - Extracting triples from link
+2018-04-04 11:24:54 INFO  Main:218 - Sender = link(0 - 1000)
+2018-04-04 11:24:54 INFO  Main:248 - 	article = # started 2017-03-02T14:26:05Z num lines = 0
+2018-04-04 11:24:54 INFO  Main:249 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=phrase&char=122,138> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Phrase> .
+2018-04-04 11:25:06 INFO  Main:252 - 	 global numTriples returned = 389296
+2018-04-04 11:25:06 INFO  Main:253 - 	 articles processed = 999
+2018-04-04 11:25:06 INFO  Main:254 - 	 number of articles pending... 1003
+2018-04-04 11:27:12 INFO  Main:144 - Files written as LOD = 995
+2018-04-04 11:27:12 INFO  Main:152 - Remaining articles = 8
+2018-04-04 11:27:12 INFO  Main:110 - begin = 1000-- End = 2000 of -- 118626
+2018-04-04 11:27:12 INFO  Main:113 - Extracting triples from page
+2018-04-04 11:27:12 INFO  Main:218 - Sender = page(1000 - 2000)
+2018-04-04 16:31:15 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:31:31 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:32:37 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:33:35 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:36:23 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:36:43 INFO  Main:76 - TOTAL TIME = 0 min, 20 sec
+2018-04-04 16:39:08 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:39:21 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:50:51 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:50:52 INFO  Main:133 - number of lines processed: 100000
+2018-04-04 16:55:47 INFO  Main:61 - Starting Replacement process
+2018-04-04 16:55:52 INFO  Main:133 - number of lines processed: 500000
+2018-04-04 16:55:56 INFO  Main:133 - number of lines processed: 1000000
+2018-04-04 16:56:00 INFO  Main:133 - number of lines processed: 1500000
+2018-04-04 16:56:04 INFO  Main:133 - number of lines processed: 2000000
+2018-04-04 16:56:09 INFO  Main:133 - number of lines processed: 2500000
+2018-04-04 16:56:13 INFO  Main:133 - number of lines processed: 3000000
+2018-04-04 16:56:22 INFO  Main:133 - number of lines processed: 3500000
+2018-04-04 16:56:26 INFO  Main:133 - number of lines processed: 4000000
+2018-04-04 16:56:31 INFO  Main:133 - number of lines processed: 4500000
+2018-04-04 16:56:36 INFO  Main:133 - number of lines processed: 5000000
+2018-04-04 16:56:40 INFO  Main:133 - number of lines processed: 5500000
+2018-04-04 16:56:57 INFO  Main:133 - number of lines processed: 6000000
+2018-04-04 16:57:16 INFO  Main:133 - number of lines processed: 6500000
+2018-04-04 16:57:25 INFO  Main:133 - number of lines processed: 7000000
+2018-04-04 17:09:42 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:09:43 INFO  Main:133 - number of lines processed: 45000
+2018-04-04 17:09:43 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:44 INFO  Main:133 - number of lines processed: 90000
+2018-04-04 17:09:44 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:44 INFO  Main:133 - number of lines processed: 135000
+2018-04-04 17:09:44 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:45 INFO  Main:133 - number of lines processed: 180000
+2018-04-04 17:09:45 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:45 INFO  Main:133 - number of lines processed: 225000
+2018-04-04 17:09:45 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:46 INFO  Main:133 - number of lines processed: 270000
+2018-04-04 17:09:46 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:46 INFO  Main:133 - number of lines processed: 315000
+2018-04-04 17:09:46 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:47 INFO  Main:133 - number of lines processed: 360000
+2018-04-04 17:09:47 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:47 INFO  Main:133 - number of lines processed: 405000
+2018-04-04 17:09:47 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:47 INFO  Main:133 - number of lines processed: 450000
+2018-04-04 17:09:47 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:48 INFO  Main:133 - number of lines processed: 495000
+2018-04-04 17:09:48 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:09:48 INFO  Main:133 - number of lines processed: 540000
+2018-04-04 17:09:48 INFO  Main:144 - TOTAL TIME = 0 min, 0 sec
+2018-04-04 17:10:59 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:11:04 INFO  Main:133 - number of lines processed: 450000
+2018-04-04 17:11:05 INFO  Main:144 - TOTAL TIME = 0 min, 1 sec
+2018-04-04 17:11:08 INFO  Main:133 - number of lines processed: 900000
+2018-04-04 17:11:10 INFO  Main:144 - TOTAL TIME = 0 min, 1 sec
+2018-04-04 17:11:13 INFO  Main:133 - number of lines processed: 1350000
+2018-04-04 17:11:34 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:12:24 INFO  Main:133 - number of lines processed: 4500000
+2018-04-04 17:12:58 INFO  Main:144 - TOTAL TIME = 0 min, 34 sec
+2018-04-04 17:14:03 INFO  Main:148 - number of lines processed: 8703211
+2018-04-04 17:14:59 INFO  Main:76 - TOTAL TIME = 3 min, 25 sec
+2018-04-04 17:17:34 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:18:21 INFO  Main:133 - number of lines processed: 4500000
+2018-04-04 17:18:36 INFO  Main:144 - TOTAL TIME = 0 min, 14 sec
+2018-04-04 17:19:23 INFO  Main:133 - number of lines processed: 9000000
+2018-04-04 17:19:51 INFO  Main:144 - TOTAL TIME = 0 min, 27 sec
+2018-04-04 17:20:36 INFO  Main:133 - number of lines processed: 13500000
+2018-04-04 17:20:51 INFO  Main:144 - TOTAL TIME = 0 min, 15 sec
+2018-04-04 17:21:16 INFO  Main:148 - number of lines processed: 15636214
+2018-04-04 17:21:24 INFO  Main:76 - TOTAL TIME = 3 min, 50 sec
+2018-04-04 17:39:55 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:40:40 INFO  Main:133 - number of lines processed: 4500000
+2018-04-04 17:41:00 INFO  Main:144 - TOTAL TIME = 0 min, 20 sec
+2018-04-04 17:41:46 INFO  Main:133 - number of lines processed: 9000000
+2018-04-04 17:42:17 INFO  Main:144 - TOTAL TIME = 0 min, 30 sec
+2018-04-04 17:43:05 INFO  Main:133 - number of lines processed: 13500000
+2018-04-04 17:43:20 INFO  Main:144 - TOTAL TIME = 0 min, 15 sec
+2018-04-04 17:43:41 INFO  Main:148 - number of lines processed: 15636214
+2018-04-04 17:44:02 INFO  Main:76 - TOTAL TIME = 4 min, 6 sec
+2018-04-04 17:48:03 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:48:47 INFO  Main:133 - number of lines processed: 4500000
+2018-04-04 17:49:14 INFO  Main:144 - TOTAL TIME = 0 min, 27 sec
+2018-04-04 17:49:58 INFO  Main:148 - number of lines processed: 8703211
+2018-04-04 17:50:13 INFO  Main:76 - TOTAL TIME = 2 min, 10 sec
+2018-04-04 17:55:14 INFO  Main:61 - Starting Replacement process
+2018-04-04 17:55:31 INFO  Main:148 - number of lines processed: 706381
+2018-04-04 17:55:34 INFO  Main:76 - TOTAL TIME = 0 min, 20 sec

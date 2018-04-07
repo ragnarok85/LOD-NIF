@@ -2,13 +2,10 @@ package lod.nif.main;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -50,6 +47,7 @@ public class LOD {
 	}
 	
 	public String lodFile(String article, String pathArticle, String output) throws NoSuchAlgorithmException, IOException{
+//		System.out.println("pathArticle = "+pathArticle);
 		String outputPath = createOutputPath(article, output);
 //		parseFile(outputPath+".ttl.bz2", pathArticle);
 		parseFileGZ(outputPath+".ttl.bz2", pathArticle);
@@ -65,12 +63,14 @@ public class LOD {
 		String path = createDirectoryStructure(md5Name, output);
 		String fileName = extractFileName(md5Name);
 		
+//		System.out.println(md5Name + "\n" + path + "\n" + fileName + "\n");
 		return  path + "/" + fileName;
 	}
 	
 	
 	public String md5(String name) throws NoSuchAlgorithmException {
 		String md5 = "";
+//		String base = new String(("<http://nif.dbpedia.org/wiki/en/"+name).getBytes(),StandardCharsets.UTF_8);
 		String base = new String(name.getBytes(),StandardCharsets.UTF_8);
 		byte[] fileName = base.getBytes();
 		MessageDigest md = MessageDigest.getInstance("MD5");
@@ -146,18 +146,16 @@ public class LOD {
 		}
 	}
 	
-	public void writeJenaModel(String output, StringReader sr) throws FileNotFoundException {
+	public void loadIntoModel(String hdtOutput, String filePath){
 		Model readModel = ModelFactory.createDefaultModel();
-		PrintWriter path = new PrintWriter(new BufferedOutputStream(
-				new FileOutputStream(output)));
-
-		readModel.read(sr, "NTRIPLES");
-		readModel.write(path, "NTRIPLES");
-		readModel.close();
-	}
-	
-	public void justWrite(String output, List<String> lines) throws IOException {
-		FileUtils.writeLines(new File(output), lines, true);
+		File path = new File(filePath);
+		
+		if(path.exists() && path.isFile()){
+			readModel.read(filePath,"NTRIPLES");
+			model.add(readModel);
+			readModel.close();
+		}else{
+		}
 	}
 	
 	public BZip2CompressorInputStream createBz2Reader(String source) {

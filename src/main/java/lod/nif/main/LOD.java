@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
@@ -56,6 +57,13 @@ public class LOD {
 		return outputPath+".ttl.bz2";
 	}
 	
+	public String lodFile(String article, String output, List<String> lines) throws NoSuchAlgorithmException, IOException{
+		String outputPath = createOutputPath(article, output);
+//		parseFile(outputPath+".ttl.bz2", pathArticle);
+		parseFileGZ(outputPath+".ttl.bz2", lines);
+		return outputPath+".ttl.bz2";
+	}
+	
 	public void hdtFile(String baseURI, String pathArticle, String hdtOutput) throws NoSuchAlgorithmException, IOException, ParserException{
 		parseFileHDT(hdtOutput, pathArticle, baseURI);
 	}		
@@ -63,10 +71,11 @@ public class LOD {
 	public String createOutputPath(String name, String output) throws NoSuchAlgorithmException{
 		String md5Name = md5(name);
 		String path = createDirectoryStructure(md5Name, output);
-		String fileName = extractFileName(md5Name);
+//		String fileName = extractFileName(md5Name);
 		
-		return  path + "/" + fileName;
+		return  path + "/" + name;
 	}
+	
 	
 	
 	public String md5(String name) throws NoSuchAlgorithmException {
@@ -91,7 +100,20 @@ public class LOD {
 	
 	public void parseFileGZ(String outputPath, String filePath) throws IOException{
 		List<String> lines = FileUtils.readLines(new File(filePath));
+		
 		OutputStream os = Files.newOutputStream(Paths.get(outputPath));
+		BufferedOutputStream bos = new BufferedOutputStream(os);
+		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
+		PrintWriter pw = new PrintWriter(outputStream, true);
+		for(String line : lines){
+			pw.write(line + "\n");
+		}
+		pw.close();
+	}
+	
+	public void parseFileGZ(String outputPath, List<String> lines) throws IOException{
+		//OutputStream os = Files.newOutputStream(Paths.get(outputPath));
+		OutputStream os = new FileOutputStream(outputPath,true);
 		BufferedOutputStream bos = new BufferedOutputStream(os);
 		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
 		PrintWriter pw = new PrintWriter(outputStream, true);

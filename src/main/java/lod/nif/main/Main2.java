@@ -32,10 +32,7 @@ public class Main2 {
 	 * args[1] - output folder
 	 * args[2] - outputReports
 	 * args[3] - report name - the same as the BZ2
-	 * args[4] - original URI
-	 * args[5] - replacement URI
 	 * 
-	 * URI e.g. <http://dbpedia.org/resource/
 	 */
 
 	String replaceUri = "";
@@ -51,16 +48,6 @@ public class Main2 {
 		String outputReports = args[2];
 		String reportName = args[3];
 
-		String originalUri = args[4];
-
-		try {
-			if (args[5] != null) {
-				main.replaceUri = args[5];
-				main.replacement = true;
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-
-		}
 
 		// System.out.println("Creating BufferedReader from BZ2 files");
 		BufferedReader br = main.getBufferedReaderForCompressedFile(pathBZ2);
@@ -71,8 +58,8 @@ public class Main2 {
 		String articlesData = "";
 
 		logger.info("Extracting triples");
-		main.createTempFiles(br, outputFolder, originalUri);
-
+		 main.createTempFiles(br, outputFolder);
+		
 		long endTime = System.currentTimeMillis() - initialTime;
 		String timeElapsed = String.format("TOTAL TIME = %d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(endTime),
 				TimeUnit.MILLISECONDS.toSeconds(endTime)
@@ -111,18 +98,22 @@ public class Main2 {
 	Set<String> setArticles = new HashSet<String>();
 	int brCounter = 0;
 
-	public void createTempFiles(BufferedReader br, String outputFolder, String originalUri)
-			throws IOException, DecoderException {
+	public void createTempFiles(BufferedReader br, String outputFolder)
+			throws IOException, DecoderException, NoSuchAlgorithmException {
 		boolean fin = false;
+		LOD lod = new LOD();
+		int counter = 0;
 		while (!fin) {
+			
 			String article = "";
 			List<String> lines = new ArrayList<String>();
-			fin = extractArticleLines(br, lines, originalUri);
+			fin = extractArticleLines(br, lines);
 			if (lines.size() > 0) {
+				counter += lines.size();
+				System.out.println(counter);
+				article = generateName(lines.get(0));
 				setArticles.add(article);
-				String outputName = generateName(lines.get(0), replaceUri);
-				writeTempFile(outputFolder + "/" + outputName, lines);
-				writeTempFileLine(outputFolder, originalUri);
+				lod.lodFile(article, outputFolder, lines);
 			} else {
 				logger.info("\tarticle = " + article + " num lines = " + lines.size());
 				logger.info("\tlast = " + last);
@@ -130,7 +121,7 @@ public class Main2 {
 		}
 	}
 
-	public boolean extractArticleLines(BufferedReader br, List<String> lines, String originalUri)
+	public boolean extractArticleLines(BufferedReader br, List<String> lines)
 			throws IOException, DecoderException {
 		String line = "";
 		String article;
@@ -142,7 +133,7 @@ public class Main2 {
 			line = last;
 			article = last.split("\\?dbpv")[0];
 		}
-
+		
 		while (true) {
 			if(line == null) {
 				fin = true;
@@ -155,9 +146,6 @@ public class Main2 {
 				continue;
 			}
 			if (line.contains(article + "?dbpv")) {// dbpv=2016-10
-				if (replacement) {
-					line = line.replace(originalUri, replaceUri);
-				}
 				lines.add(line);
 			} else {
 				last = line;
@@ -181,11 +169,12 @@ public class Main2 {
 		writeReport(reportDirectory, reportName, context);
 	}
 
-	public String generateName(String uri, String newUri) {
+	public String generateName(String uri) {
 		uri = uri.split("\\?")[0];
-		uri = uri.replace(newUri, "");
-		uri = uri.split("\\?")[0].replace("/", "_____");
-		return uri;
+		String split[] = uri.split("/");
+		int uriLength = split.length;
+		
+		return split[uriLength-1];
 	}
 
 	public void printLines(List<String> lines) {
@@ -225,13 +214,12 @@ public class Main2 {
 		}
 	}
 
-	public void writeTempFileLine(String output, String originalUri) {
-		String outputName = generateName(last, originalUri);
+	public void writeTempFileLine(String output) {
+		String outputName = generateName(last);
 		String o = output + "/" + outputName+ ".nt";
 		try (PrintWriter pw = new PrintWriter(
 				new OutputStreamWriter(new FileOutputStream(o, true), StandardCharsets.UTF_8))) {
-			String lineToWrite = last.replace(originalUri, replaceUri);
-			pw.write(lineToWrite + "\n");
+			pw.write(last + "\n");
 			last = "";
 			pw.close();
 		} catch (IOException e) {

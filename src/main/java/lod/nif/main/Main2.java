@@ -186,7 +186,7 @@ public class Main2 {
 	public void writeReport(String reportDirectory, String reportName, String reportData) {
 		String output = reportDirectory + "/" + reportName;
 		try (PrintWriter pw = new PrintWriter(
-				new OutputStreamWriter(new FileOutputStream(output), StandardCharsets.UTF_8))) {
+				new OutputStreamWriter(new FileOutputStream(output, true), StandardCharsets.UTF_8))) {
 			pw.write(reportData);
 			pw.close();
 		} catch (IOException e) {

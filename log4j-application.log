@@ -207,3 +207,12 @@
 2018-04-10 19:10:09 INFO  Main2:60 - Extracting triples
 2018-04-10 19:10:10 INFO  Main2:118 - 	article =  num lines = 0
 2018-04-10 19:10:10 INFO  Main2:119 - 	last = <http://dbpedia.org/resource/Animalia_(book)?dbpv=2016-10&nif=phrase&char=27,42> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Phrase> .
+2018-04-16 11:14:23 INFO  Main2:60 - Extracting triples
+2018-04-16 11:14:25 INFO  Main2:118 - 	article =  num lines = 0
+2018-04-16 11:14:25 INFO  Main2:119 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=phrase&char=122,138> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Phrase> .
+2018-04-16 11:42:32 INFO  Main2:60 - Extracting triples
+2018-04-16 11:42:34 INFO  Main2:118 - 	article =  num lines = 0
+2018-04-16 11:42:34 INFO  Main2:119 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=section&char=0,1234> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Section> .
+2018-04-16 12:11:05 INFO  Main2:60 - Extracting triples
+2018-04-16 12:11:07 INFO  Main2:118 - 	article =  num lines = 0
+2018-04-16 12:11:07 INFO  Main2:119 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .

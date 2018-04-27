@@ -66,25 +66,25 @@ public class Main2 {
 						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(endTime)));
 		System.out.println(timeElapsed);
 		reportData += "\nTIME ELAPSED\t" + timeElapsed + "\n";
-		main.writeReport(outputReports, "ListProcessedArticles.tsv", articlesData);
-		main.writeReport(outputReports, "reports.tsv", reportData);
+		main.writeReport(outputReports, reportName+"-ListProcessedArticles.tsv", articlesData);
+		main.writeReport(outputReports, reportName+"-reports.tsv", reportData);
 		main.extractArticlesProcessed(outputReports, reportName);
 	}
 
-	public List<String> readListFromFile(File pathList) {
-		List<String> list = new ArrayList<String>();
-		try (BufferedReader br = new BufferedReader(
-				new InputStreamReader(new FileInputStream(pathList), StandardCharsets.UTF_8))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				list.add(line);
-			}
-			br.close();
-		} catch (IOException e) {
-
-		}
-		return list;
-	}
+//	public List<String> readListFromFile(File pathList) {
+//		List<String> list = new ArrayList<String>();
+//		try (BufferedReader br = new BufferedReader(
+//				new InputStreamReader(new FileInputStream(pathList), StandardCharsets.UTF_8))) {
+//			String line;
+//			while ((line = br.readLine()) != null) {
+//				list.add(line);
+//			}
+//			br.close();
+//		} catch (IOException e) {
+//
+//		}
+//		return list;
+//	}
 
 	public BufferedReader getBufferedReaderForCompressedFile(String fileIn)
 			throws FileNotFoundException, CompressorException {
@@ -110,7 +110,7 @@ public class Main2 {
 			fin = extractArticleLines(br, lines);
 			if (lines.size() > 0) {
 				counter += lines.size();
-				System.out.println(counter);
+				logger.info(counter);
 				article = generateName(lines.get(0));
 				setArticles.add(article);
 				lod.lodFile(article, outputFolder, lines);

@@ -216,3 +216,4 @@
 2018-04-16 12:11:05 INFO  Main2:60 - Extracting triples
 2018-04-16 12:11:07 INFO  Main2:118 - 	article =  num lines = 0
 2018-04-16 12:11:07 INFO  Main2:119 - 	last = <http://simple.dbpedia.org/resource/Abbreviation?dbpv=2016-10&nif=context> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#Context> .
+2018-04-23 20:52:48 INFO  Main2:60 - Extracting triples

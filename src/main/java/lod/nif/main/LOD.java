@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -116,7 +117,8 @@ public class LOD {
 		OutputStream os = new FileOutputStream(outputPath,true);
 		BufferedOutputStream bos = new BufferedOutputStream(os);
 		BZip2CompressorOutputStream outputStream = new BZip2CompressorOutputStream(bos);
-		PrintWriter pw = new PrintWriter(outputStream, true);
+//		PrintWriter pw = new PrintWriter(outputStream);
+		PrintWriter pw = new PrintWriter(new OutputStreamWriter(outputStream,Charset.forName("UTF-8")));
 		for(String line : lines){
 			pw.write(line + "\n");
 		}

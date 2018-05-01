@@ -146,7 +146,7 @@ public class Main2 {
 		try {
 			uriLang = uri.split("/"+lang+"/")[1];
 		}catch(Exception e) {
-			logger.fatal("error caused by = " + uri);
+			logger.fatal("error caused by = " + uri + " --- " + uriLang);
 		}
 		
 		return uriLang.replace("/", "%20");

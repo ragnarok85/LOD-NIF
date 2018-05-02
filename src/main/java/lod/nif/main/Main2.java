@@ -151,8 +151,14 @@ public class Main2 {
 
 
 	public String generateName(String uri, String lang) {
-		uri = uri.split("\\?")[0];
-		String uriLang = uri.split(lang+"/")[1];
+		uri = uri.split("\\?dbpv")[0];
+		String uriLang = "";
+		try {
+			uriLang = uri.split("/"+lang+"/")[1];
+		}catch(Exception e) {
+			logger.fatal("error caused by = " + uri + " --- " + uriLang);
+		}
+		
 		return uriLang.replace("/", "%20");
 	}
 	

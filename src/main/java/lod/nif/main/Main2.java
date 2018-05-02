@@ -22,6 +22,7 @@ import org.apache.commons.codec.DecoderException;
 import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 public class Main2 {
@@ -69,6 +70,13 @@ public class Main2 {
 		reportData += "\nTIME ELAPSED\t" + timeElapsed + "\n";
 		main.writeReport(outputReports, reportName+"-timeElapsed.tsv", reportData);
 	}
+	
+//	public static void main(String[] args) throws IOException{
+//		System.out.println("Manuel_%22Flaco%22_Ibáñez");
+//		String fileName = "Manuel_%22Flaco%22_Ibáñez";
+//		File output =  new File(fileName);
+//		FileUtils.write(output, "Manuel_%22Flaco%22_Ibáñez");
+//	}
 
 	public BufferedReader getBufferedReaderForCompressedFile(String fileIn)
 			throws FileNotFoundException, CompressorException {
@@ -86,6 +94,7 @@ public class Main2 {
 		boolean fin = false;
 		LOD lod = new LOD();
 		int counter = 0;
+		File index = new File(outputFolder+"/index.txt");
 		while (!fin) {
 			String article = "";
 			List<String> lines = new ArrayList<String>();
@@ -94,7 +103,8 @@ public class Main2 {
 				counter += lines.size();
 				logger.info(counter);
 				article = generateName(lines.get(0), lang);
-				lod.lodFile(article, outputFolder, lines);
+				String iName = lod.lodFile(article, outputFolder, lines);
+				FileUtils.write(index, article + "\t" + iName, true);
 			} else {
 				logger.info("\tarticle = " + article + " num lines = " + lines.size());
 				logger.info("\tlast = " + last);
@@ -145,6 +155,7 @@ public class Main2 {
 		String uriLang = uri.split(lang+"/")[1];
 		return uriLang.replace("/", "%20");
 	}
+	
 
 	public void printLines(List<String> lines) {
 		for (String line : lines) {

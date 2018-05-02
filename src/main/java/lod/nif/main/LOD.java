@@ -72,9 +72,9 @@ public class LOD {
 	public String createOutputPath(String name, String output) throws NoSuchAlgorithmException{
 		String md5Name = md5(name);
 		String path = createDirectoryStructure(md5Name, output);
-//		String fileName = extractFileName(md5Name);
+		String fileName = extractFileName(md5Name);
 		
-		return  path + "/" + name;
+		return  path + "/" + fileName;
 	}
 	
 	

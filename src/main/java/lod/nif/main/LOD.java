@@ -1,6 +1,7 @@
 package lod.nif.main;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -67,7 +68,9 @@ public class LOD {
 	
 	public void hdtFile(String baseURI, String pathArticle, String hdtOutput) throws NoSuchAlgorithmException, IOException, ParserException{
 		parseFileHDT(hdtOutput, pathArticle, baseURI);
-	}		
+	}	
+	
+	
 	
 	public String createOutputPath(String name, String output) throws NoSuchAlgorithmException{
 		String md5Name = md5(name);
@@ -159,16 +162,21 @@ public class LOD {
 	public void parseFileHDT(String hdtOutput, String filePath, String baseURI) throws IOException, ParserException{
 		Model model = ModelFactory.createDefaultModel();
 		
-		//BZip2CompressorInputStream inputStream = createBz2Reader(filePath);
-		File path = new File(filePath);
-		
-		if(path.exists() && path.isFile()){
-			model.read(filePath,"NTRIPLES");
-			HDTTest.createHDT(model, hdtOutput, baseURI);
-			model.close();
-		}else{
-		}
+		BZip2CompressorInputStream inputStream = createBz2Reader(filePath);
+//		File path = new File(filePath);
+//		InputStream stream = new ByteArrayInputStream(filePath.getBytes(StandardCharsets.UTF_8));
+		model.read(inputStream,"NTRIPLES");
+		HDTTest.createHDT(model, hdtOutput, baseURI);
+		model.close();
+//		if(path.exists() && path.isFile()){
+//			model.read(filePath,"NTRIPLES");
+//			HDTTest.createHDT(model, hdtOutput, baseURI);
+//			model.close();
+//		}else{
+//		}
 	}
+	
+	
 	
 	public void writeJenaModel(String output, StringReader sr) throws FileNotFoundException {
 		Model readModel = ModelFactory.createDefaultModel();

@@ -23,7 +23,9 @@ import org.apache.commons.compress.compressors.CompressorException;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.commons.io.FileUtils;
+import org.apache.jena.atlas.lib.ListUtils;
 import org.apache.log4j.Logger;
+import org.rdfhdt.hdt.exceptions.ParserException;
 
 public class Main2 {
 	static final Logger logger = Logger.getLogger(Main2.class);
@@ -42,7 +44,7 @@ public class Main2 {
 	boolean replacement = true;
 
 	public static void main(String... args)
-			throws CompressorException, IOException, NoSuchAlgorithmException, DecoderException {
+			throws CompressorException, IOException, NoSuchAlgorithmException, DecoderException, ParserException {
 		Main2 main = new Main2();
 		long initialTime = System.currentTimeMillis();
 		String pathBZ2 = args[0];
@@ -90,7 +92,7 @@ public class Main2 {
 	int brCounter = 0;
 
 	public void createTempFiles(BufferedReader br, String outputFolder, String lang)
-			throws IOException, DecoderException, NoSuchAlgorithmException {
+			throws IOException, DecoderException, NoSuchAlgorithmException, ParserException {
 		boolean fin = false;
 		LOD lod = new LOD();
 		int counter = 0;
@@ -104,6 +106,7 @@ public class Main2 {
 				logger.info(counter);
 				article = generateName(lines.get(0), lang);
 				String iName = lod.lodFile(article, outputFolder, lines);
+//				lod.hdtFile(lines, outputFolder+"/hdtVersion.hdt");
 				FileUtils.write(index, article + "\t" + iName, true);
 			} else {
 				logger.info("\tarticle = " + article + " num lines = " + lines.size());
@@ -112,6 +115,14 @@ public class Main2 {
 		}
 	}
 
+	public String listToString(List<String> list){
+		String all = "";
+		for(String l : list){
+			all += l + "\n";
+		}
+		return all;
+	}
+	
 	public boolean extractArticleLines(BufferedReader br, List<String> lines)
 			throws IOException, DecoderException {
 		String line = "";

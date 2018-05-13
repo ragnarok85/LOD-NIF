@@ -39,18 +39,19 @@ public class HDTTest  {
 //		createOneHDT(lines, "hdtoutput.hdt");
 		
 		HDTTest main  = new HDTTest();
-		FileInputStream fin = new FileInputStream("sample.ttl.bz2");
-		BufferedInputStream bis = new BufferedInputStream(fin);
-		CompressorInputStream input = new CompressorStreamFactory().createCompressorInputStream(bis);
-		BufferedReader br2 = new BufferedReader(new InputStreamReader(input));
-		
-		String line = "";
-		List<String> lines = new ArrayList<String>();
-		while((line = br2.readLine()) != null){
-			System.out.println(line);
-			lines.add(line);
-		}
-		main.parseFileGZ("sample2.ttl.bz2", lines);
+//		FileInputStream fin = new FileInputStream("sample.ttl.bz2");
+//		BufferedInputStream bis = new BufferedInputStream(fin);
+//		CompressorInputStream input = new CompressorStreamFactory().createCompressorInputStream(bis);
+//		BufferedReader br2 = new BufferedReader(new InputStreamReader(input));
+//		
+//		String line = "";
+//		List<String> lines = new ArrayList<String>();
+//		while((line = br2.readLine()) != null){
+//			System.out.println(line);
+//			lines.add(line);
+//		}
+//		main.parseFileGZ("sample2.ttl.bz2", lines);
+		main.createOneHDT("/home/noe/nif_en.hdt");
 	}
 	
 	public void parseFileGZ(String outputPath, List<String> lines) throws IOException{
@@ -81,26 +82,27 @@ public class HDTTest  {
 		}
 	}
 	
-	public static void createOneHDT(List<String> lines, String hdtOutput) throws IOException, ParserException, CompressorException {
+	public static void createOneHDT(String hdtOutput) throws IOException, ParserException, CompressorException {
 		File outputFile = new File(hdtOutput);
-		
-		File[] files = new File("/Users/lti/Downloads/Simple_nif/segments/00/01/").listFiles();
+//		
+//		File[] files = new File("/Users/lti/Downloads/Simple_nif/segments/00/01/").listFiles();
 		HDT hdt = null;
-			
-			BZip2CompressorInputStream input = null;
-			try {
-				InputStream pageStructure = FileManager.get().open("/Users/lti/Downloads/Simple_nif/segments/all_parts.ttl.bz2");
-				input = new BZip2CompressorInputStream(pageStructure, true);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			
+//			BZip2CompressorInputStream input = null;
+//			try {
+//				InputStream pageStructure = FileManager.get().open("/Users/lti/Downloads/Simple_nif/segments/all_parts.ttl.bz2");
+//				input = new BZip2CompressorInputStream(pageStructure, true);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 			
 //			Model model = ModelFactory.createDefaultModel();
 //			model.read(input, null, "NTRIPLES");
 			
 //			JenaModelIterator jmi = new JenaModelIterator(model);
 			OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile, true));
-			hdt = HDTManager.generateHDT("/Users/lti/Downloads/Simple_nif/segments/all_parts.ttl.bz2", "http://nif.dbpedia.org/wiki/simple/", RDFNotation.parse("ntriples"), new HDTSpecification(), null);
+//			hdt = HDTManager.generateHDT("/Users/lti/Downloads/Simple_nif/segments/all_parts.ttl.bz2", "http://nif.dbpedia.org/wiki/simple/", RDFNotation.parse("ntriples"), new HDTSpecification(), null);
+			hdt = HDTManager.generateHDT("/home/noe/nif_en.ttl.bz2", "http://nif.dbpedia.org/wiki/en/", RDFNotation.parse("ntriples"), new HDTSpecification(), null);
 			try {
 				// Save generated HDT to a file
 					hdt.saveToHDT(out, null);
@@ -110,7 +112,7 @@ public class HDTTest  {
 				
 				out.close();
 				hdt.close();
-				input.close();
+//				input.close();
 //				model.close();
 				
 			}

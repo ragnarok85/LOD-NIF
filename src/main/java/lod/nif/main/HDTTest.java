@@ -51,7 +51,8 @@ public class HDTTest  {
 //			lines.add(line);
 //		}
 //		main.parseFileGZ("sample2.ttl.bz2", lines);
-		main.createOneHDT("/home/noe/nif_en.hdt");
+//		main.createOneHDT("/home/noe/nif_en.hdt");
+		main.createOneHDT(args[0], args[1]);
 	}
 	
 	public void parseFileGZ(String outputPath, List<String> lines) throws IOException{
@@ -82,7 +83,7 @@ public class HDTTest  {
 		}
 	}
 	
-	public static void createOneHDT(String hdtOutput) throws IOException, ParserException, CompressorException {
+	public static void createOneHDT(String input, String hdtOutput) throws IOException, ParserException, CompressorException {
 		File outputFile = new File(hdtOutput);
 //		
 //		File[] files = new File("/Users/lti/Downloads/Simple_nif/segments/00/01/").listFiles();
@@ -102,7 +103,8 @@ public class HDTTest  {
 //			JenaModelIterator jmi = new JenaModelIterator(model);
 			OutputStream out = new BufferedOutputStream(new FileOutputStream(outputFile, true));
 //			hdt = HDTManager.generateHDT("/Users/lti/Downloads/Simple_nif/segments/all_parts.ttl.bz2", "http://nif.dbpedia.org/wiki/simple/", RDFNotation.parse("ntriples"), new HDTSpecification(), null);
-			hdt = HDTManager.generateHDT("/home/noe/nif_en.ttl.bz2", "http://nif.dbpedia.org/wiki/en/", RDFNotation.parse("ntriples"), new HDTSpecification(), null);
+			//"/home/noe/nif_en.ttl.bz2"
+			hdt = HDTManager.generateHDT(input, "http://nif.dbpedia.org/wiki/en/", RDFNotation.parse("ntriples"), new HDTSpecification(), null);
 			try {
 				// Save generated HDT to a file
 					hdt.saveToHDT(out, null);

@@ -107,7 +107,7 @@ public class Main2 {
 				article = generateName(lines.get(0), lang);
 				String iName = lod.lodFile(article, outputFolder, lines);
 //				lod.hdtFile(lines, outputFolder+"/hdtVersion.hdt");
-				FileUtils.write(index, article + "\t" + iName, true);
+				FileUtils.write(index, article + "\t" + iName + "\n", true);
 			} else {
 				logger.info("\tarticle = " + article + " num lines = " + lines.size());
 				logger.info("\tlast = " + last);
